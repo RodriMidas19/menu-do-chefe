@@ -4,11 +4,14 @@
   width: 100vw;
   justify-content: space-between;
   align-items: center;
+  background-color: #000000;
+  position: fixed;
 
   .text-header-main {
     padding: 10px 10px 10px 10px;
+    color: #ffffff;
     .text-header {
-      color: lightskyblue;
+      color: #f2c94c;
     }
   }
 
@@ -20,19 +23,17 @@
       margin-left: 16px;
       margin-right: 10px;
       cursor: pointer;
-      font-weight: bold;
     }
     .link-logout {
       margin-left: 16px;
       margin-right: 10px;
       cursor: pointer;
-      font-weight: bold;
       color: red;
     }
   }
   .nav a {
     text-decoration: none;
-    color: lightskyblue;
+    color: #ffffff;
   }
 
   .dropdown {

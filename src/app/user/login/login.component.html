@@ -1,0 +1,28 @@
+<div class="mainLogin">
+  <div class="div">
+    <form action="" class="formlogin">
+      <div class="divInput">
+        <label for="">E-mail</label>
+        <input
+          type="email"
+          class="inputForm"
+          [(ngModel)]="userEmail"
+          [ngModelOptions]="{ standalone: true }"
+        />
+      </div>
+      <div class="divInput">
+        <label for="">Password</label>
+        <input
+          type="password"
+          class="inputForm"
+          [(ngModel)]="userPassword"
+          [ngModelOptions]="{ standalone: true }"
+        />
+      </div>
+      <span class="spanAlert">{{ message }}</span>
+      <button class="btnForm" type="submit" (click)="userLogin()">
+        Entrar
+      </button>
+    </form>
+  </div>
+</div>

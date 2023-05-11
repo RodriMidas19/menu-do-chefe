@@ -1,0 +1,43 @@
+<header class="header">
+  <h4 class="text-header-main">
+    <span class="text-header">Me</span>nu <span class="text-header">Do </span>
+    <span>Che<span class="text-header">fe</span></span>
+  </h4>
+  <nav class="nav">
+    <a href=""><h6 class="link">Home</h6></a>
+    <a href="#restaurantes"><h6 class="link">Restaurantes</h6></a>
+    <a href="#reservas"><h6 class="link">Reservas</h6></a>
+    <a href=""><h6 class="link">Encomendas</h6></a>
+    <a [routerLink]="'/login'"><h6 *ngIf="!loginBtn" class="link">Login</h6></a>
+    <a href=""><h6 *ngIf="loginBtn" class="link">Perfil</h6></a>
+    <h6 class="link-logout" *ngIf="loginBtn">Logout</h6>
+  </nav>
+
+  <div class="dropdown">
+    <a
+      href=""
+      class="dropdown-toggle"
+      role="button"
+      data-bs-toggle="dropdown"
+      aria-expanded="false"
+      id="dropdownMenuLink"
+      ><lucide-icon name="MenuIcon" class="mobile-icons"></lucide-icon
+    ></a>
+
+    <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+      <li><a class="dropdown-item">Home</a></li>
+      <li><a class="dropdown-item">Restaurantes</a></li>
+      <li><a class="dropdown-item">Reservas</a></li>
+      <li><a class="dropdown-item">Encomendas</a></li>
+      <li>
+        <a class="dropdown-item text-login" *ngIf="!loginBtn"> Login </a>
+      </li>
+      <li><a class="dropdown-item" *ngIf="loginBtn">Perfil</a></li>
+      <li>
+        <button class="dropdown-item text-logout" *ngIf="loginBtn">
+          Logout
+        </button>
+      </li>
+    </ul>
+  </div>
+</header>

@@ -1,0 +1,14 @@
+.main-sec-restaurantes {
+  display: flex;
+  width: 100%;
+  height: 100vh;
+  background-color: grey;
+  justify-content: center;
+  align-items: center;
+  .div-restaurante {
+    display: flex;
+    background-color: aqua;
+    width: 90%;
+    height: 85%;
+  }
+}

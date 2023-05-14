@@ -1,3 +1,5 @@
+@import url("https://fonts.googleapis.com/css2?family=Smooch&display=swap");
+
 .header {
   display: flex;
   flex-direction: row;
@@ -6,12 +8,48 @@
   align-items: center;
   background-color: #000000;
   position: fixed;
+  -webkit-box-shadow: 1px 10px 17px 5px rgba(0, 0, 0, 0.85);
+  box-shadow: 1px 10px 17px 5px rgba(0, 0, 0, 0.85);
+  height: 75px;
 
-  .text-header-main {
-    padding: 10px 10px 10px 10px;
-    color: #ffffff;
-    .text-header {
-      color: #f2c94c;
+  .text-header-bd {
+    display: flex;
+    flex-direction: column;
+    height: 75%;
+    padding-left: 10px;
+    .text-header-main {
+      font-family: Smooch;
+      font-size: 1.875rem; /* 30px */
+      line-height: 2.25rem; /* 36px */
+      .text-header-1 {
+        color: green;
+      }
+      .text-header-2 {
+        color: #fff;
+      }
+      .text-header-3 {
+        color: red;
+      }
+    }
+    .rec {
+      display: flex;
+      flex-direction: row;
+      width: 150px;
+      top: 0px;
+
+      .rec-1 {
+        width: 33.3%;
+        height: 100%;
+        border: 2px solid green;
+      }
+      .rec-2 {
+        width: 33.3%;
+        background-color: #fff !important;
+      }
+      .rec-3 {
+        width: 33.3%;
+        background-color: red !important;
+      }
     }
   }
 
@@ -40,7 +78,7 @@
     padding: 10px 10px 10px 10px;
 
     .dropdown-toggle {
-      color: #f2c94c;
+      color: green;
     }
 
     .text-logout {
@@ -52,7 +90,7 @@
   }
 }
 
-@media (min-width: 640px) {
+@media (min-width: 740px) {
   .mobile-icons {
     display: none;
     color: black;
@@ -62,7 +100,7 @@
   }
 }
 
-@media (max-width: 640px) {
+@media (max-width: 740px) {
   .link {
     display: none;
   }

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { RestauranteServiceService } from 'src/app/services/restaurantes/restaurante-service.service';
+import { RestaurantResponse } from 'src/app/services/userServices/login-response.interface';
 
 @Component({
   selector: 'app-restaurantes-display',
@@ -15,10 +16,8 @@ export class RestaurantesDisplayComponent implements OnInit {
   data: any;
 
   async getAllRestaurants() {
-    await (
-      await this.service.getRestaurants()
-    ).subscribe((resp) => {
-      this.data = resp;
+    (await this.service.getRestaurants()).subscribe((resp) => {
+      this.data = resp.recordset;
       console.log(this.data);
     });
   }

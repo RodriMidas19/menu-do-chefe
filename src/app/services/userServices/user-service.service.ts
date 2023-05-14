@@ -2,12 +2,13 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { loginResponse } from './login-response.interface';
 import { Observable } from 'rxjs';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root',
 })
 export class UserServiceService {
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient, private router: Router) {}
   token: any = '';
   apiUrl = 'http://localhost:3333';
   getUserToken(): boolean {
@@ -21,8 +22,9 @@ export class UserServiceService {
   setToken(id: string) {
     localStorage.setItem('Token', id);
   }
-  removeToken() {
-    localStorage.removeItem('Token');
+  async removeToken() {
+    await localStorage.removeItem('Token');
+    this.router.navigateByUrl('/login');
   }
 
   userLogin(user: any): Observable<loginResponse> {

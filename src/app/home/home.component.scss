@@ -1,3 +1,5 @@
+@import url("https://fonts.googleapis.com/css2?family=Smooch&display=swap");
+
 .main-sec {
   display: flex;
   width: 100%;
@@ -29,10 +31,30 @@
         text-align: center;
         width: 400px;
       }
+      h1 {
+        font-family: Smooch;
+        font-size: 3.75rem; /* 60px */
+        line-height: 1;
+      }
 
       .rec {
+        display: flex;
+        flex-direction: row;
         width: 250px;
-        border: 2px solid #f2c94c;
+
+        .rec-1 {
+          width: 33.3%;
+          height: 100%;
+          border: 2px solid green;
+        }
+        .rec-2 {
+          width: 33.3%;
+          background-color: #fff !important;
+        }
+        .rec-3 {
+          width: 33.3%;
+          background-color: red !important;
+        }
       }
     }
     .imgPizza {
@@ -69,5 +91,9 @@
   }
   p {
     width: 75% !important;
+  }
+  h1 {
+    font-size: 2.25rem !important; /* 36px */
+    line-height: 2.5rem !important; /* 40px */
   }
 }

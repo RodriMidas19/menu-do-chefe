@@ -1,5 +1,15 @@
-<section class="main-sec-restaurantes">
-  <div class="div-restaurante" *ngFor="let item of data">
-    <h1>{{ data.nome }}</h1>
+<section class="main-sec-restaurantes" id="restaurantes">
+  <h1>Os nossos Restaurantes <span style="color: red">.</span></h1>
+  <div class="div-restaurante">
+    <div class="restaurante" *ngFor="let item of data" style="background-image: url(../../../assets/wood.png);">
+      <div class="div-img">
+        <img src="../../../assets/porto.png" alt="" class="img-restaurante" />
+      </div>
+      <div class="div-info">
+        <h4>{{ item.nome }}</h4>
+        <h6>{{ item.localidade }}</h6>
+        <p>{{ item.morada }}</p>
+      </div>
+    </div>
   </div>
 </section>

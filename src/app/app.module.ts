@@ -11,9 +11,10 @@ import { HomeComponent } from './home/home.component';
 import { RestaurantesDisplayComponent } from './components/restaurantes-display/restaurantes-display.component';
 import { AboutComponent } from './components/about/about.component';
 import { ReservasComponent } from './components/reservas/reservas.component';
+import { RegisterComponent } from './user/register/register.component';
 
 @NgModule({
-  declarations: [AppComponent, NavbarComponent, LoginComponent, HomeComponent, RestaurantesDisplayComponent, AboutComponent, ReservasComponent],
+  declarations: [AppComponent, NavbarComponent, LoginComponent, HomeComponent, RestaurantesDisplayComponent, AboutComponent, ReservasComponent, RegisterComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,

@@ -13,13 +13,40 @@
   </div>
 
   <nav class="nav">
-    <a href=""><h6 class="link">Home</h6></a>
-    <a href="#restaurantes"><h6 class="link">Restaurantes</h6></a>
-    <a href="#reservas"><h6 class="link">Reservas</h6></a>
-    <a href=""><h6 class="link">Encomendas</h6></a>
-    <a [routerLink]="'/login'"><h6 *ngIf="!loginBtn" class="link">Login</h6></a>
-    <a href=""><h6 *ngIf="loginBtn" class="link">Perfil</h6></a>
-    <h6 class="link-logout" *ngIf="loginBtn" (Click)="userLogout()">Logout</h6>
+    <a [routerLink]="'/home'" routerLinkActive="activeRouter"
+      ><h6 class="link">Home</h6></a
+    >
+    <a
+      [routerLink]="'/home'"
+      routerLinkActive="activeRouter"
+      [routerLinkActiveOptions]="linkActiveOptions"
+      fragment="restaurantes"
+      ><h6 class="link">Restaurantes</h6></a
+    >
+    <a
+      [routerLink]="'/home'"
+      routerLinkActive="activeRouter"
+      [routerLinkActiveOptions]="linkActiveOptions"
+      fragment="reservas"
+      ><h6 class="link">Reservas</h6></a
+    >
+    <a href="" routerLinkActive="activeRouter"
+      ><h6 class="link">Encomendas</h6></a
+    >
+    <a [routerLink]="'/login'" routerLinkActive="activeRouter"
+      ><h6 *ngIf="!loginBtn" class="link">Login</h6></a
+    >
+    <a [routerLink]="'/perfil:id'" routerLinkActive="activeRouter"
+      ><h6 *ngIf="loginBtn" class="link">Perfil</h6></a
+    >
+    <h6
+      class="link-logout"
+      *ngIf="loginBtn"
+      (Click)="userLogout()"
+      routerLinkActive="activeRouter"
+    >
+      Logout
+    </h6>
   </nav>
 
   <div class="dropdown">
@@ -34,12 +61,44 @@
     ></a>
 
     <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-      <li><a class="dropdown-item">Home</a></li>
-      <li><a class="dropdown-item">Restaurantes</a></li>
-      <li><a class="dropdown-item">Reservas</a></li>
-      <li><a class="dropdown-item">Encomendas</a></li>
+      <li><a class="dropdown-item" [routerLink]="'/home'">Home</a></li>
       <li>
-        <a class="dropdown-item text-login" *ngIf="!loginBtn"> Login </a>
+        <a
+          class="dropdown-item"
+          [routerLink]="'/home'"
+          routerLinkActive="activeRouter"
+          [routerLinkActiveOptions]="linkActiveOptions"
+          fragment="restaurantes"
+          >Restaurantes</a
+        >
+      </li>
+      <li>
+        <a
+          class="dropdown-item"
+          [routerLink]="'/home'"
+          routerLinkActive="activeRouter"
+          [routerLinkActiveOptions]="linkActiveOptions"
+          fragment="reservas"
+          >Reservas</a
+        >
+      </li>
+      <li>
+        <a
+          class="dropdown-item"
+          [routerLink]="'/encomendas'"
+          routerLinkActive="activeRouter"
+          >Encomendas</a
+        >
+      </li>
+      <li>
+        <a
+          class="dropdown-item text-login"
+          *ngIf="!loginBtn"
+          [routerLink]="'/login'"
+          routerLinkActive="activeRouter"
+        >
+          Login
+        </a>
       </li>
       <li><a class="dropdown-item" *ngIf="loginBtn">Perfil</a></li>
       <li>

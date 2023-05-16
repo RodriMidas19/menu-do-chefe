@@ -12,7 +12,8 @@ export class LoginComponent {
 
   userEmail: string = '';
   userPassword: string = '';
-  message: string = '';
+  messageEmail: string = '';
+  messagePassword: string = '';
   async userLogin() {
     let user = { email: this.userEmail, password: this.userPassword };
 
@@ -20,9 +21,10 @@ export class LoginComponent {
       if (response.message == 'Login realizado com sucesso') {
         this.service.setToken(response.id);
         this.router.navigateByUrl('/home');
+      } else if (response.message == 'Email não existe.') {
+        this.messageEmail = response.message;
       } else {
-        this.message = response.message;
-        console.log(this.message);
+        this.messagePassword = response.message;
       }
     });
   }

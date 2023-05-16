@@ -23,11 +23,27 @@
       .title-container {
         color: #ffff;
         font-family: Smooch;
+        margin-bottom: 0;
       }
       .rec {
-        height: 0;
-        width: 200px;
-        border: 2px solid #f2c94c;
+        display: flex;
+        flex-direction: row;
+        width: 150px;
+        top: 0px;
+
+        .rec-1 {
+          width: 33.3%;
+          height: 100%;
+          border: 2px solid green;
+        }
+        .rec-2 {
+          width: 33.3%;
+          background-color: #fff !important;
+        }
+        .rec-3 {
+          width: 33.3%;
+          background-color: red !important;
+        }
       }
 
       .reservaBtn {

@@ -37,4 +37,8 @@ export class UserServiceService {
       headers,
     });
   }
+
+  getAllClients() {
+    return this.http.get(`${this.apiUrl}/clientes`);
+  }
 }

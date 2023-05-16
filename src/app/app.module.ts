@@ -12,15 +12,32 @@ import { RestaurantesDisplayComponent } from './components/restaurantes-display/
 import { AboutComponent } from './components/about/about.component';
 import { ReservasComponent } from './components/reservas/reservas.component';
 import { RegisterComponent } from './user/register/register.component';
+import { AdminComponent } from './admin/admin.component';
+
+//Prime NG
+import { TableModule } from 'primeng/table';
+import { TabViewModule } from 'primeng/tabview';
 
 @NgModule({
-  declarations: [AppComponent, NavbarComponent, LoginComponent, HomeComponent, RestaurantesDisplayComponent, AboutComponent, ReservasComponent, RegisterComponent],
+  declarations: [
+    AppComponent,
+    NavbarComponent,
+    LoginComponent,
+    HomeComponent,
+    RestaurantesDisplayComponent,
+    AboutComponent,
+    ReservasComponent,
+    RegisterComponent,
+    AdminComponent,
+  ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     LucideAngularModule.pick({ MenuIcon }),
     FormsModule,
     HttpClientModule,
+    TableModule,
+    TabViewModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

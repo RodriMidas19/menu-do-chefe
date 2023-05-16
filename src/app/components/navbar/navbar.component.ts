@@ -23,14 +23,19 @@ export class NavbarComponent implements OnInit {
   };
   constructor(private service: UserServiceService) {}
   loginBtn: boolean = false;
+  btnAdmin: boolean = false;
+  token: string = '';
   ngOnInit(): void {
     this.cheToken();
   }
   cheToken(): boolean {
-    const log = this.service.getUserToken();
+    const log = this.service.verifyToken();
 
     if (log == true) {
       this.loginBtn = true;
+      if (this.service.getToken() === 'ADM') {
+        this.btnAdmin = true;
+      }
       return true;
     } else {
       this.loginBtn = false;

@@ -11,7 +11,7 @@ export class UserServiceService {
   constructor(private http: HttpClient, private router: Router) {}
   token: any = '';
   apiUrl = 'http://localhost:3333';
-  getUserToken(): boolean {
+  verifyToken(): boolean {
     if (localStorage.getItem('Token') !== null) {
       return true;
     } else {
@@ -19,6 +19,10 @@ export class UserServiceService {
     }
   }
 
+  getToken(): any {
+    this.token = localStorage.getItem('Token');
+    return this.token;
+  }
   setToken(id: string) {
     localStorage.setItem('Token', id);
   }

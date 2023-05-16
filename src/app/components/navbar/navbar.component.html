@@ -39,14 +39,11 @@
     <a [routerLink]="'/perfil:id'" routerLinkActive="activeRouter"
       ><h6 *ngIf="loginBtn" class="link">Perfil</h6></a
     >
-    <h6
-      class="link-logout"
-      *ngIf="loginBtn"
-      (Click)="userLogout()"
-      routerLinkActive="activeRouter"
-    >
-      Logout
-    </h6>
+    <a>
+      <h6 class="link-logout" *ngIf="loginBtn" (Click)="userLogout()">
+        Logout
+      </h6>
+    </a>
   </nav>
 
   <div class="dropdown">
@@ -89,6 +86,11 @@
           routerLinkActive="activeRouter"
           >Encomendas</a
         >
+      </li>
+      <li>
+        <a [routerLink]="'/admin'" *ngIf="btnAdmin" class="dropdown-item">
+          Admin
+        </a>
       </li>
       <li>
         <a

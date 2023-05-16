@@ -13,7 +13,7 @@ export class ReservasComponent implements OnInit {
     this.cheToken();
   }
   cheToken(): boolean {
-    const log = this.service.getUserToken();
+    const log = this.service.verifyToken();
 
     if (log == true) {
       this.login = true;

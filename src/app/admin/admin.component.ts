@@ -8,8 +8,5 @@ import { UserServiceService } from '../services/userServices/user-service.servic
 })
 export class AdminComponent {
   constructor(private service: UserServiceService) {}
-  data: any;
-  getAllClients() {
-    this.data = this.service.getAllClients();
-  }
+  adminName: string = 'Rodrigo';
 }

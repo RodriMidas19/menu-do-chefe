@@ -17,3 +17,20 @@ export interface Restaurant {
   morada: string;
   localidade: string;
 }
+
+export interface ClientesResponse {
+  output: {};
+  recordset: Clients[];
+  recordsets: [Clients[]];
+  rowsAffected: [number];
+}
+
+export interface Clients {
+  id_cliente: number;
+  nome: string;
+  data_nasc: string;
+  telefone: string;
+  morada: string;
+  email: string;
+  password: string;
+}

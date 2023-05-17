@@ -1,6 +1,12 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { LucideAngularModule, MenuIcon } from 'lucide-angular';
+import {
+  LucideAngularModule,
+  MenuIcon,
+  User2,
+  Book,
+  BookDown,
+} from 'lucide-angular';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
@@ -17,6 +23,7 @@ import { AdminComponent } from './admin/admin.component';
 //Prime NG
 import { TableModule } from 'primeng/table';
 import { TabViewModule } from 'primeng/tabview';
+import { AdminDashboardComponent } from './components/admin-dashboard/admin-dashboard.component';
 
 @NgModule({
   declarations: [
@@ -29,11 +36,12 @@ import { TabViewModule } from 'primeng/tabview';
     ReservasComponent,
     RegisterComponent,
     AdminComponent,
+    AdminDashboardComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    LucideAngularModule.pick({ MenuIcon }),
+    LucideAngularModule.pick({ MenuIcon, User2, Book, BookDown }),
     FormsModule,
     HttpClientModule,
     TableModule,

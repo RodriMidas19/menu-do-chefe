@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { loginResponse } from './login-response.interface';
+import { ClientesResponse, loginResponse } from './login-response.interface';
 import { Observable } from 'rxjs';
 import { Router } from '@angular/router';
 
@@ -39,6 +39,6 @@ export class UserServiceService {
   }
 
   getAllClients() {
-    return this.http.get(`${this.apiUrl}/clientes`);
+    return this.http.get<ClientesResponse>(`${this.apiUrl}/clientes`);
   }
 }

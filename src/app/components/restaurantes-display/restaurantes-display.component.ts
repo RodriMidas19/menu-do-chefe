@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { RestauranteServiceService } from 'src/app/services/restaurantes/restaurante-service.service';
-import { RestaurantResponse } from 'src/app/services/userServices/login-response.interface';
+import { RestaurantResponse } from 'src/app/services/models/models.interface';
 
 @Component({
   selector: 'app-restaurantes-display',

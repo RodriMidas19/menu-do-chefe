@@ -1,20 +1,5 @@
 <main class="main">
-  <p-table [value]="data" [tableStyle]="{ 'min-width': '50rem' }">
-    <ng-template pTemplate="header">
-      <tr>
-        <th>Nome</th>
-        <th>Email</th>
-        <th>Telefone</th>
-        <th>Morada</th>
-      </tr>
-    </ng-template>
-    <ng-template pTemplate="body" let-product>
-      <tr>
-        <td>{{ product.nome }}</td>
-        <td>{{ product.email }}</td>
-        <td>{{ product.telefone }}</td>
-        <td>{{ product.morada }}</td>
-      </tr>
-    </ng-template>
-  </p-table>
+  <div *ngIf="page">
+    <h5>{{ page }}</h5>
+  </div>
 </main>

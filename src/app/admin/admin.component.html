@@ -1,22 +1,22 @@
 <section class="main-sec-admin">
-  <aside class="sideBar">
+  <aside class="sideBar" style="background-image: url(../../assets/wood.png)">
     <h4 class="text-side">Bem-vindo {{ adminName }}</h4>
     <div class="items-side">
       <div class="item-side">
         <lucide-icon name="User2"></lucide-icon>
-        <a [routerLink]="'/admin/clientes'"><h6>Clientes</h6></a>
+        <a [routerLink]="['/admin', 'clientes']"><h6>Clientes</h6></a>
       </div>
       <div class="item-side">
         <lucide-icon name="User2"></lucide-icon>
-        <a [routerLink]="'/admin/funcionarios'"><h6>Funcionários</h6></a>
+        <a [routerLink]="['/admin', 'funcionarios']"><h6>Funcionários</h6></a>
       </div>
       <div class="item-side">
         <lucide-icon name="BookDown"></lucide-icon>
-        <a [routerLink]="'/admin/reservas'"><h6>Reservas</h6></a>
+        <a [routerLink]="['/admin', 'reservas']"><h6>Reservas</h6></a>
       </div>
       <div class="item-side">
         <lucide-icon name="Book"></lucide-icon>
-        <a [routerLink]="'/admin/menus'"><h6>Menus</h6></a>
+        <a [routerLink]="['/admin', 'menus']"><h6>Menus</h6></a>
       </div>
     </div>
   </aside>

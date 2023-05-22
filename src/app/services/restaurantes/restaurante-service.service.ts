@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { RestaurantResponse } from '../userServices/login-response.interface';
+import { RestaurantResponse } from '../models/models.interface';
 
 @Injectable({
   providedIn: 'root',

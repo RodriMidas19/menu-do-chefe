@@ -36,6 +36,9 @@
     <a [routerLink]="'/login'" routerLinkActive="activeRouter"
       ><h6 *ngIf="!loginBtn" class="link">Login</h6></a
     >
+    <a *ngIf="btnAdmin" [routerLink]="'/admin'" routerLinkActive="activeRouter"
+      ><h6 class="link">Admin</h6></a
+    >
     <a [routerLink]="'/perfil:id'" routerLinkActive="activeRouter"
       ><h6 *ngIf="loginBtn" class="link">Perfil</h6></a
     >

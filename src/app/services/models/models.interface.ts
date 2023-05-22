@@ -34,3 +34,20 @@ export interface Clients {
   email: string;
   password: string;
 }
+
+export interface FuncionariosResponse {
+  output: {};
+  recordset: Funcionarios[];
+  recordsets: [Funcionarios[]];
+  rowsAffected: [number];
+}
+
+export interface Funcionarios {
+  num_funcionario: string;
+  nome_funcionario: string;
+  idade: number;
+  telefone: string;
+  email: string;
+  password: string;
+  cargo: number;
+}

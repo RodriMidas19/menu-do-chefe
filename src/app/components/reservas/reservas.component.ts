@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { RestauranteServiceService } from 'src/app/services/restaurantes/restaurante-service.service';
 import { UserServiceService } from 'src/app/services/userServices/user-service.service';
 
 @Component({
@@ -8,7 +9,28 @@ import { UserServiceService } from 'src/app/services/userServices/user-service.s
 })
 export class ReservasComponent implements OnInit {
   login: boolean = false;
-  constructor(private service: UserServiceService) {}
+  restaurantes: any;
+  nPessoas: number = 0;
+  restaurante: any;
+  hora: any;
+  dataReserva: any;
+  horas: any[] = [
+    '12:00',
+    '13:00',
+    '14:00',
+    '15:00',
+    '16:00',
+    '17:00',
+    '18:00',
+    '19:00',
+    '20:00',
+    '21:00',
+    '22:00',
+  ];
+  constructor(
+    private service: UserServiceService,
+    private restauranteService: RestauranteServiceService
+  ) {}
   ngOnInit(): void {
     this.cheToken();
   }
@@ -17,10 +39,24 @@ export class ReservasComponent implements OnInit {
 
     if (log == true) {
       this.login = true;
+      this.getRestaurantes();
       return true;
     } else {
       this.login = false;
       return false;
     }
+  }
+
+  async getRestaurantes() {
+    (await this.restauranteService.getRestaurants()).subscribe((response) => {
+      this.restaurantes = response.recordset;
+    });
+  }
+
+  async reservarMesa() {
+    console.log(this.nPessoas);
+    console.log(this.restaurante);
+    console.log(this.hora);
+    console.log(this.dataReserva);
   }
 }

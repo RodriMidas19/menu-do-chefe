@@ -1,3 +1,81 @@
 <section class="main-sec-reservas" id="reservas">
-    
+  <main class="main-div" *ngIf="!login">
+    <h1>Para realizar uma reserva, por favor faça o login.</h1>
+    <a [routerLink]="'/login'"><button class="loginBtn">Login</button></a>
+  </main>
+  <main class="main-div-reservas" *ngIf="login">
+    <form action="" class="signin-form">
+      <div class="inputs">
+        <div class="form-group">
+          <select
+            name=""
+            id="selectRestaurante"
+            value="0"
+            class="form-control"
+            [(ngModel)]="restaurante"
+            [ngModelOptions]="{ standalone: true }"
+          >
+            <option value="0">Selecione um Restaurante</option>
+            <option
+              value="{{ item.num_restaurante }}"
+              *ngFor="let item of restaurantes"
+              class="options"
+            >
+              {{ item.nome }}
+            </option>
+          </select>
+        </div>
+        <div class="form-group">
+          <input
+            type="number"
+            class="form-control"
+            required
+            [(ngModel)]="nPessoas"
+            placeholder="Nº de Pessoas"
+            [ngModelOptions]="{ standalone: true }"
+          />
+        </div>
+      </div>
+      <div class="inputs">
+        <div class="form-group">
+          <input
+            id="password-field"
+            type="date"
+            class="form-control"
+            required
+            [(ngModel)]="dataReserva"
+            [ngModelOptions]="{ standalone: true }"
+          />
+        </div>
+        <div class="form-group">
+          <select
+            name=""
+            id=""
+            value="0"
+            class="form-control"
+            [(ngModel)]="hora"
+            [ngModelOptions]="{ standalone: true }"
+          >
+            <option value="0">Selecione uma Hora</option>
+            <option
+              value="{{ item }}"
+              *ngFor="let item of horas"
+              class="options"
+            >
+              {{ item }}
+            </option>
+          </select>
+        </div>
+      </div>
+    </form>
+    <div class="form-group btnReserva">
+      <button
+        type="submit"
+        class="form-control btn btn-primary rounded submit px-3"
+        (click)="reservarMesa()"
+      >
+        Reservar
+      </button>
+    </div>
+  </main>
 </section>

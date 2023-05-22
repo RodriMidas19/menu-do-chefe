@@ -18,7 +18,6 @@ export class RestaurantesDisplayComponent implements OnInit {
   async getAllRestaurants() {
     (await this.service.getRestaurants()).subscribe((resp) => {
       this.data = resp.recordset;
-      console.log(this.data);
     });
   }
 }

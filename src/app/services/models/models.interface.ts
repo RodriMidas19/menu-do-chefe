@@ -51,3 +51,23 @@ export interface Funcionarios {
   password: string;
   cargo: number;
 }
+export interface reservasResponse {
+  output: {};
+  recordset: Reservas[];
+  recordsets: [Reservas[]];
+  rowsAffected: [number];
+}
+
+export interface Reservas {
+  num_reserva: number;
+  nome: string;
+  num_pessoas: number;
+  data_reserva: string;
+  situacao: boolean;
+  hora_reserva: string;
+  nomeCliente: string;
+}
+
+export interface reservas {
+  message: string;
+}

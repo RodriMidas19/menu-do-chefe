@@ -54,9 +54,18 @@ export class ReservasComponent implements OnInit {
   }
 
   async reservarMesa() {
-    console.log(this.nPessoas);
-    console.log(this.restaurante);
-    console.log(this.hora);
-    console.log(this.dataReserva);
+    let id = await this.service.getToken();
+    let data = {
+      num_restaurante: this.restaurante,
+      num_pessoas: this.nPessoas,
+      data_reserva: this.dataReserva,
+      situacao: 0,
+      hora_reserva: this.hora,
+      id_cliente: id,
+    };
+
+    (await this.restauranteService.createReserva(data)).subscribe((resp) => {
+      console.log(resp.message);
+    });
   }
 }

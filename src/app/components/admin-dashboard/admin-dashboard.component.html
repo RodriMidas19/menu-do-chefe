@@ -1,5 +1,26 @@
 <main class="main">
   <div *ngIf="page">
-    <h5>{{ page }}</h5>
+    <p-table [value]="dataReservas" [tableStyle]="{ 'min-width': '50rem' }">
+      <ng-template pTemplate="header">
+        <tr>
+          <th>Nº Reserva</th>
+          <th>Restaurante</th>
+          <th>Cliente</th>
+          <th>Nº Pessoas</th>
+          <th>Data Reserva</th>
+          <th>Hora Reserva</th>
+        </tr>
+      </ng-template>
+      <ng-template pTemplate="body" let-product>
+        <tr>
+          <td>{{ product.num_reserva }}</td>
+          <td>{{ product.nome }}</td>
+          <td>{{ product.nomeCliente }}</td>
+          <td>{{ product.num_pessoas }}</td>
+          <td>{{ product.data_reserva }}</td>
+          <td>{{ product.hora_reserva }}</td>
+        </tr>
+      </ng-template>
+    </p-table>
   </div>
 </main>

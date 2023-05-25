@@ -5,12 +5,15 @@
   </main>
   <main class="main-div-reservas" *ngIf="login">
     <form action="" class="signin-form">
+      <div class="img-div">
+        <img src="../../../assets/mesa.png" alt="" />
+      </div>
       <div class="inputs">
         <div class="form-group">
           <select
+            value="0"
             name=""
             id="selectRestaurante"
-            value="0"
             class="form-control"
             [(ngModel)]="restaurante"
             [ngModelOptions]="{ standalone: true }"
@@ -35,8 +38,6 @@
             [ngModelOptions]="{ standalone: true }"
           />
         </div>
-      </div>
-      <div class="inputs">
         <div class="form-group">
           <input
             id="password-field"
@@ -66,16 +67,16 @@
             </option>
           </select>
         </div>
+        <div class="form-group btnReserva">
+          <button
+            type="submit"
+            class="form-control btn btn-primary rounded submit px-3"
+            (click)="reservarMesa()"
+          >
+            Reservar
+          </button>
+        </div>
       </div>
     </form>
-    <div class="form-group btnReserva">
-      <button
-        type="submit"
-        class="form-control btn btn-primary rounded submit px-3"
-        (click)="reservarMesa()"
-      >
-        Reservar
-      </button>
-    </div>
   </main>
 </section>

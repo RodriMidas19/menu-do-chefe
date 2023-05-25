@@ -1,6 +1,6 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { RestaurantResponse } from '../models/models.interface';
+import { RestaurantResponse, reservas } from '../models/models.interface';
 
 @Injectable({
   providedIn: 'root',
@@ -11,6 +11,24 @@ export class RestauranteServiceService {
   async getRestaurants() {
     return await this.http.get<RestaurantResponse>(
       'http://localhost:3333/restaurantes'
+    );
+  }
+
+  async createReserva(data: any) {
+    const headers = new HttpHeaders().set('Content-Type', 'application/json');
+
+    return await this.http.post<reservas>(
+      'http://localhost:3333/reservaCliente',
+      data,
+      {
+        headers,
+      }
+    );
+  }
+
+  async getReservas() {
+    return await this.http.get<RestaurantResponse>(
+      'http://localhost:3333/reservas'
     );
   }
 }

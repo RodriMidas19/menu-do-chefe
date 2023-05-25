@@ -9,16 +9,17 @@
         <img src="../../../assets/mesa.png" alt="" />
       </div>
       <div class="inputs">
+        <span style="color: red">{{ errorMessage }}</span>
         <div class="form-group">
           <select
-            value="0"
+            value="-1"
             name=""
             id="selectRestaurante"
             class="form-control"
             [(ngModel)]="restaurante"
             [ngModelOptions]="{ standalone: true }"
           >
-            <option value="0">Selecione um Restaurante</option>
+            <option value="-1">Selecione um Restaurante</option>
             <option
               value="{{ item.num_restaurante }}"
               *ngFor="let item of restaurantes"

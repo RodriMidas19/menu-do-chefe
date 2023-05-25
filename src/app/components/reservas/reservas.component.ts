@@ -12,6 +12,7 @@ export class ReservasComponent implements OnInit {
   restaurantes: any;
   nPessoas: number = 0;
   restaurante: any;
+  errorMessage: string | undefined;
   hora: any;
   dataReserva: any;
   horas: any[] = [
@@ -31,6 +32,7 @@ export class ReservasComponent implements OnInit {
     private service: UserServiceService,
     private restauranteService: RestauranteServiceService
   ) {}
+
   ngOnInit(): void {
     this.cheToken();
   }
@@ -63,9 +65,12 @@ export class ReservasComponent implements OnInit {
       hora_reserva: this.hora,
       id_cliente: id,
     };
-
-    (await this.restauranteService.createReserva(data)).subscribe((resp) => {
-      console.log(resp.message);
-    });
+    if (new Date() > this.dataReserva) {
+      this.errorMessage = 'Data não é válida';
+    } else {
+      (await this.restauranteService.createReserva(data)).subscribe((resp) => {
+        console.log(resp.message);
+      });
+    }
   }
 }

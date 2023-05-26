@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { SelectItem } from 'primeng/api';
+import { Funcionarios } from 'src/app/services/models/models.interface';
 import { RestauranteServiceService } from 'src/app/services/restaurantes/restaurante-service.service';
 import { UserServiceService } from 'src/app/services/userServices/user-service.service';
 
@@ -14,6 +16,12 @@ export class AdminDashboardComponent implements OnInit {
     private rService: RestauranteServiceService,
     private router: ActivatedRoute
   ) {}
+
+  products: Funcionarios[] = [];
+
+  statuses: SelectItem[] | undefined;
+
+  clonedProducts: { [s: string]: Funcionarios } = {};
   data: any;
   dataReservas: any;
   page: any = '';
@@ -29,6 +37,9 @@ export class AdminDashboardComponent implements OnInit {
         this.getAllReservas();
       }
     });
+    this.service.getAllFunc().subscribe((res) => {
+      this.products = res.recordset;
+    });
   }
 
   async getAllClients() {
@@ -40,7 +51,7 @@ export class AdminDashboardComponent implements OnInit {
 
   async getAllFunc() {
     await this.service.getAllFunc().subscribe((res) => {
-      this.data = res.recordset;
+      this.products = res.recordset;
     });
   }
 

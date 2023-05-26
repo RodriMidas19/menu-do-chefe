@@ -22,8 +22,9 @@ import { AdminComponent } from './admin/admin.component';
 
 //Prime NG
 import { TableModule } from 'primeng/table';
-import { TabViewModule } from 'primeng/tabview';
 import { AdminDashboardComponent } from './components/admin-dashboard/admin-dashboard.component';
+import { ToastModule } from 'primeng/toast';
+import { MessageService } from 'primeng/api';
 
 @NgModule({
   declarations: [
@@ -45,9 +46,9 @@ import { AdminDashboardComponent } from './components/admin-dashboard/admin-dash
     FormsModule,
     HttpClientModule,
     TableModule,
-    TabViewModule,
+    ToastModule,
   ],
-  providers: [],
+  providers: [MessageService],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

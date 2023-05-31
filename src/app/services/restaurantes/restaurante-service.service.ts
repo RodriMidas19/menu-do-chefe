@@ -1,6 +1,10 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { RestaurantResponse, reservas } from '../models/models.interface';
+import {
+  RestaurantResponse,
+  reservas,
+  reservasResponse,
+} from '../models/models.interface';
 
 @Injectable({
   providedIn: 'root',
@@ -27,7 +31,7 @@ export class RestauranteServiceService {
   }
 
   async getReservas() {
-    return await this.http.get<RestaurantResponse>(
+    return await this.http.get<reservasResponse>(
       'http://localhost:3333/reservas'
     );
   }

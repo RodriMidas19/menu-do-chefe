@@ -1,7 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { SelectItem } from 'primeng/api';
-import { Funcionarios } from 'src/app/services/models/models.interface';
+import { MessageService, SelectItem } from 'primeng/api';
+import {
+  Funcionarios,
+  Reservas,
+} from 'src/app/services/models/models.interface';
 import { RestauranteServiceService } from 'src/app/services/restaurantes/restaurante-service.service';
 import { UserServiceService } from 'src/app/services/userServices/user-service.service';
 
@@ -14,16 +17,19 @@ export class AdminDashboardComponent implements OnInit {
   constructor(
     private service: UserServiceService,
     private rService: RestauranteServiceService,
-    private router: ActivatedRoute
+    private router: ActivatedRoute,
+    private messageService: MessageService
   ) {}
 
   products: Funcionarios[] = [];
+
+  dataReservas: Reservas[] = [];
+  selectProduct?: Reservas;
 
   statuses: SelectItem[] | undefined;
 
   clonedProducts: { [s: string]: Funcionarios } = {};
   data: any;
-  dataReservas: any;
   page: any = '';
 
   ngOnInit(): void {
@@ -36,9 +42,6 @@ export class AdminDashboardComponent implements OnInit {
       } else if (this.page === 'reservas') {
         this.getAllReservas();
       }
-    });
-    this.service.getAllFunc().subscribe((res) => {
-      this.products = res.recordset;
     });
   }
 
@@ -59,6 +62,22 @@ export class AdminDashboardComponent implements OnInit {
     (await this.rService.getReservas()).subscribe((resp) => {
       this.dataReservas = resp.recordset;
       console.log(this.dataReservas);
+    });
+  }
+
+  onRowSelect(event: any) {
+    this.messageService.add({
+      severity: 'info',
+      summary: 'Product Selected',
+      detail: event.data.name,
+    });
+  }
+
+  onRowUnselect(event: any) {
+    this.messageService.add({
+      severity: 'info',
+      summary: 'Product Unselected',
+      detail: event.data.name,
     });
   }
 }

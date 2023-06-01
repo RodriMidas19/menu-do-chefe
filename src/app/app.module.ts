@@ -19,7 +19,7 @@ import { AboutComponent } from './components/about/about.component';
 import { ReservasComponent } from './components/reservas/reservas.component';
 import { RegisterComponent } from './user/register/register.component';
 import { AdminComponent } from './admin/admin.component';
-
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 //Prime NG
 import { TableModule } from 'primeng/table';
 import { AdminDashboardComponent } from './components/admin-dashboard/admin-dashboard.component';
@@ -47,6 +47,7 @@ import { MessageService } from 'primeng/api';
     HttpClientModule,
     TableModule,
     ToastModule,
+    BrowserAnimationsModule,
   ],
   providers: [MessageService],
   bootstrap: [AppComponent],

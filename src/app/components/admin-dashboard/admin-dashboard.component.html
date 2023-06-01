@@ -1,5 +1,12 @@
 <p-toast></p-toast>
-<p-table [value]="dataReservas" [tableStyle]="{ 'min-width': '50rem' }">
+<p-table
+  [value]="dataReservas"
+  [selectionMode]="'single'"
+  [(selection)]="selectedProduct"
+  dataKey="num_reserva"
+  [tableStyle]="{ 'min-width': '50rem' }"
+  (onRowSelect)="onRowSelect($event)"
+>
   <ng-template pTemplate="header">
     <tr>
       <th>Reserva</th>
@@ -9,11 +16,10 @@
       <th>Hora</th>
       <th>Cliente</th>
       <th>Situação</th>
-      <th style="width: 5rem"></th>
     </tr>
   </ng-template>
   <ng-template pTemplate="body" let-product>
-    <tr>
+    <tr [pSelectableRow]="product">
       <td>{{ product.num_reserva }}</td>
       <td>{{ product.nome }}</td>
       <td>{{ product.num_pessoas }}</td>
@@ -21,15 +27,9 @@
       <td>{{ product.hora_reserva }}</td>
       <td>{{ product.nomeCliente }}</td>
       <td>{{ product.situacao }}</td>
-      <td>
-        <button
-          type="button"
-          pButton
-          pRipple
-          icon="pi pi-plus"
-          (click)="selectProduct(product)"
-        ></button>
-      </td>
     </tr>
   </ng-template>
 </p-table>
+<select>
+  <option value="" *ngFor="let item of mesas"></option>
+</select>

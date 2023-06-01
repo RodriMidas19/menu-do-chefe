@@ -12,14 +12,13 @@
         <span style="color: red">{{ errorMessage }}</span>
         <div class="form-group">
           <select
-            value="-1"
             name=""
             id="selectRestaurante"
             class="form-control"
             [(ngModel)]="restaurante"
             [ngModelOptions]="{ standalone: true }"
           >
-            <option value="-1">Selecione um Restaurante</option>
+            <option value="0" selected>Selecione um Restaurante</option>
             <option
               value="{{ item.num_restaurante }}"
               *ngFor="let item of restaurantes"
@@ -51,14 +50,14 @@
         </div>
         <div class="form-group">
           <select
+          [value]="0"
             name=""
             id=""
-            value="0"
             class="form-control"
             [(ngModel)]="hora"
             [ngModelOptions]="{ standalone: true }"
           >
-            <option value="0">Selecione uma Hora</option>
+            <option value="0" selected>Selecione uma Hora</option>
             <option
               value="{{ item }}"
               *ngFor="let item of horas"

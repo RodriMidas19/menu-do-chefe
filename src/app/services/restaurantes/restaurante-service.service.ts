@@ -35,4 +35,8 @@ export class RestauranteServiceService {
       'http://localhost:3333/reservas'
     );
   }
+
+  async getMesas(){
+    
+  }
 }

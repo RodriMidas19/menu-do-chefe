@@ -24,9 +24,7 @@ export class AdminDashboardComponent implements OnInit {
   products: Funcionarios[] = [];
 
   dataReservas: Reservas[] = [];
-  selectProduct?: Reservas;
-
-  statuses: SelectItem[] | undefined;
+  selectedProduct?: Reservas;
 
   clonedProducts: { [s: string]: Funcionarios } = {};
   data: any;
@@ -68,16 +66,10 @@ export class AdminDashboardComponent implements OnInit {
   onRowSelect(event: any) {
     this.messageService.add({
       severity: 'info',
-      summary: 'Product Selected',
-      detail: event.data.name,
+      summary: 'Reserva selecionada',
+      detail: event.data.nomeCliente,
     });
-  }
 
-  onRowUnselect(event: any) {
-    this.messageService.add({
-      severity: 'info',
-      summary: 'Product Unselected',
-      detail: event.data.name,
-    });
+    
   }
 }

@@ -2,6 +2,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import {
   RestaurantResponse,
+  mesasResponse,
   reservas,
   reservasResponse,
 } from '../models/models.interface';
@@ -36,7 +37,21 @@ export class RestauranteServiceService {
     );
   }
 
-  async getMesas(){
-    
+  async getMesas(data: any) {
+    const headers = new HttpHeaders().set('Content-Type', 'application/json');
+    return await this.http.post<mesasResponse>(
+      'http://localhost:3333/mesas',
+      data,
+      { headers }
+    );
+  }
+
+  async reservasAdm(data:any){
+    const headers = new HttpHeaders().set('Content-Type', 'application/json');
+    return await this.http.post(
+      'http://localhost:3333/reservasAdm',
+      data,
+      { headers }
+    );
   }
 }

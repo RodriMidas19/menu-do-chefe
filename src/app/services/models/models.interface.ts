@@ -72,4 +72,14 @@ export interface reservas {
   message: string;
 }
 
-
+export interface mesasResponse {
+  output: {};
+  recordset: Mesas[];
+  recordsets: [Mesas[]];
+  rowsAffected: [number];
+}
+export interface Mesas {
+  num_mesa: string;
+  num_restaurante: number;
+  num_lugares: number;
+}

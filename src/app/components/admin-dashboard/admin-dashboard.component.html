@@ -1,35 +1,45 @@
 <p-toast></p-toast>
-<p-table
-  [value]="dataReservas"
-  [selectionMode]="'single'"
-  [(selection)]="selectedProduct"
-  dataKey="num_reserva"
-  [tableStyle]="{ 'min-width': '50rem' }"
-  (onRowSelect)="onRowSelect($event)"
->
-  <ng-template pTemplate="header">
-    <tr>
-      <th>Reserva</th>
-      <th>Restaurante</th>
-      <th>Pessoas</th>
-      <th>Data</th>
-      <th>Hora</th>
-      <th>Cliente</th>
-      <th>Situação</th>
-    </tr>
-  </ng-template>
-  <ng-template pTemplate="body" let-product>
-    <tr [pSelectableRow]="product">
-      <td>{{ product.num_reserva }}</td>
-      <td>{{ product.nome }}</td>
-      <td>{{ product.num_pessoas }}</td>
-      <td>{{ product.data_reserva }}</td>
-      <td>{{ product.hora_reserva }}</td>
-      <td>{{ product.nomeCliente }}</td>
-      <td>{{ product.situacao }}</td>
-    </tr>
-  </ng-template>
-</p-table>
-<select>
-  <option value="" *ngFor="let item of mesas"></option>
-</select>
+<div class="main">
+  <p-table
+    [value]="dataReservas"
+    [selectionMode]="'single'"
+    [(selection)]="selectedProduct"
+    dataKey="num_reserva"
+    [tableStyle]="{ 'min-width': '50rem' }"
+    (onRowSelect)="onRowSelect($event)"
+    (onRowUnselect)="onRowUnselect($event)"
+  >
+    <ng-template pTemplate="header">
+      <tr>
+        <th>Reserva</th>
+        <th>Restaurante</th>
+        <th>Pessoas</th>
+        <th>Data</th>
+        <th>Hora</th>
+        <th>Cliente</th>
+        <th>Situação</th>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-product>
+      <tr [pSelectableRow]="product">
+        <td>{{ product.num_reserva }}</td>
+        <td>{{ product.nome }}</td>
+        <td>{{ product.num_pessoas }}</td>
+        <td>{{ product.data_reserva }}</td>
+        <td>{{ product.hora_reserva }}</td>
+        <td>{{ product.nomeCliente }}</td>
+        <td>{{ product.situacao }}</td>
+      </tr>
+    </ng-template>
+  </p-table>
+  <p-multiSelect
+    [style]="{ 'min-width': '50rem' }"
+    [options]="num_mesas"
+    [(ngModel)]="mesasSelected"
+    optionLabel="name"
+  ></p-multiSelect>
+  <div class="buttons">
+    <button class="btn btn-primary" *ngIf="reserva" (click)="confirm()">Confirmar Reserva</button>
+    <button class="btn btn-danger" *ngIf="reserva">Rejeitar Reserva</button>
+  </div>
+</div>

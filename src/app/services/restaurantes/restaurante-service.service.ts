@@ -57,7 +57,7 @@ export class RestauranteServiceService {
 
   async updateReserva(id: any, status: any) {
     return await this.http.put<reservas>(
-      `http://localhost:3333/reservas/${id}/${status}`,
+      `http://localhost:3333/Updatereservas/${id}/${status}`,
       id
     );
   }

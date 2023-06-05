@@ -81,10 +81,23 @@ export class AdminDashboardComponent implements OnInit {
         summary: 'Reserva Confirmada',
         detail: resp.message,
       });
-     (await this.rService.updateReserva(this.id_reserva,2)).subscribe((resp)=>{
-
-     })
+      this.UpdateStatus(this.id_reserva, 2);
     });
+  }
+  async CancelReserva() {
+    this.UpdateStatus(this.id_reserva, 3);
+  }
+
+  async UpdateStatus(id_reserva: number, status: number) {
+    (await this.rService.updateReserva(id_reserva, status)).subscribe(
+      (resp) => {
+        this.messageService.add({
+          severity: 'success',
+          summary: `Reserva ${this.id_reserva} Atualizada.`,
+          detail: resp.message,
+        });
+      }
+    );
   }
   id_reserva: number = 0;
   data_reservas: string = '';

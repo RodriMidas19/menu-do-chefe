@@ -20,6 +20,7 @@ import { ReservasComponent } from './components/reservas/reservas.component';
 import { RegisterComponent } from './user/register/register.component';
 import { AdminComponent } from './admin/admin.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { io, Socket } from 'socket.io-client';
 //Prime NG
 import { TableModule } from 'primeng/table';
 import { AdminDashboardComponent } from './components/admin-dashboard/admin-dashboard.component';

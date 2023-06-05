@@ -46,12 +46,19 @@ export class RestauranteServiceService {
     );
   }
 
-  async reservasAdm(data:any){
+  async reservasAdm(data: any) {
     const headers = new HttpHeaders().set('Content-Type', 'application/json');
-    return await this.http.post(
+    return await this.http.post<reservas>(
       'http://localhost:3333/reservasAdm',
       data,
       { headers }
+    );
+  }
+
+  async updateReserva(id: any, status: any) {
+    return await this.http.put<reservas>(
+      `http://localhost:3333/reservas/${id}/${status}`,
+      id
     );
   }
 }

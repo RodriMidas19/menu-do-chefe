@@ -76,7 +76,14 @@ export class AdminDashboardComponent implements OnInit {
       hora_reserva: this.hora_reservas,
     };
     (await this.rService.reservasAdm(data)).subscribe((resp) => {
-      console.log(resp);
+      this.messageService.add({
+        severity: 'success',
+        summary: 'Reserva Confirmada',
+        detail: resp.message,
+      });
+     (await this.rService.updateReserva(this.id_reserva,2)).subscribe((resp)=>{
+
+     })
     });
   }
   id_reserva: number = 0;

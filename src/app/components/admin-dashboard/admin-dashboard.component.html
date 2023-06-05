@@ -1,6 +1,7 @@
 <p-toast></p-toast>
 <div class="main">
   <p-table
+    *ngIf="reserva"
     [value]="dataReservas"
     [selectionMode]="'single'"
     [(selection)]="selectedProduct"
@@ -8,6 +9,9 @@
     [tableStyle]="{ 'min-width': '50rem' }"
     (onRowSelect)="onRowSelect($event)"
     (onRowUnselect)="onRowUnselect($event)"
+    [paginator]="true"
+    [rows]="5"
+    [globalFilterFields]="['nome']"
   >
     <ng-template pTemplate="header">
       <tr>
@@ -52,12 +56,13 @@
     </ng-template>
   </p-table>
   <p-multiSelect
+    *ngIf="reserva"
     [style]="{ 'min-width': '50rem' }"
     [options]="num_mesas"
     [(ngModel)]="mesasSelected"
     optionLabel="name"
   ></p-multiSelect>
-  <div class="buttons">
+  <div *ngIf="reserva" class="buttons">
     <button class="btn btn-primary" *ngIf="reserva" (click)="confirm()">
       Confirmar Reserva
     </button>
@@ -65,4 +70,108 @@
       Rejeitar Reserva
     </button>
   </div>
+
+  <p-table
+    [value]="dataClientes"
+    [tableStyle]="{ 'min-width': '50rem' }"
+    *ngIf="cliente"
+  >
+    <ng-template pTemplate="header">
+      <tr>
+        <th>Id</th>
+        <th>Nome</th>
+        <th>Email</th>
+        <th>Telefone</th>
+        <th>Morada</th>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-product>
+      <tr>
+        <td>{{ product.id_cliente }}</td>
+        <td>{{ product.nome }}</td>
+        <td>{{ product.email }}</td>
+        <td>{{ product.telefone }}</td>
+        <td>{{ product.morada }}</td>
+      </tr>
+    </ng-template>
+  </p-table>
+
+  <p-table
+    [value]="dataClientes"
+    dataKey="id"
+    editMode="row"
+    [tableStyle]="{ 'min-width': '50rem' }"
+  >
+    <ng-template pTemplate="header">
+      <tr>
+        <th style="width: 20%">Code</th>
+        <th style="width: 20%">Name</th>
+        <th style="width: 20%">Inventory Status</th>
+        <th style="width: 20%">Price</th>
+        <th style="width: 20%"></th>
+      </tr>
+    </ng-template>
+    <ng-template
+      pTemplate="body"
+      let-product
+      let-editing="editing"
+      let-ri="rowIndex"
+    >
+      <tr [pEditableRow]="product">
+        <td>
+          <p-cellEditor>
+            <ng-template pTemplate="input">
+              <input pInputText type="text" [(ngModel)]="product.code" />
+            </ng-template>
+            <ng-template pTemplate="output">
+              {{ product.code }}
+            </ng-template>
+          </p-cellEditor>
+        </td>
+        <td>
+          <p-cellEditor> </p-cellEditor>
+        </td>
+        <td>
+          <p-cellEditor> </p-cellEditor>
+        </td>
+        <td>
+          <p-cellEditor> </p-cellEditor>
+        </td>
+        <td>
+          <div class="flex align-items-center justify-content-center gap-2">
+            <button
+              *ngIf="!editing"
+              pButton
+              pRipple
+              type="button"
+              pInitEditableRow
+              icon="pi pi-pencil"
+              (click)="onRowEditInit(product)"
+              class="p-button-rounded p-button-text"
+            ></button>
+            <button
+              *ngIf="editing"
+              pButton
+              pRipple
+              type="button"
+              pSaveEditableRow
+              icon="pi pi-check"
+              (click)="onRowEditSave(product)"
+              class="p-button-rounded p-button-text p-button-success mr-2"
+            ></button>
+            <button
+              *ngIf="editing"
+              pButton
+              pRipple
+              type="button"
+              pCancelEditableRow
+              icon="pi pi-times"
+              (click)="onRowEditCancel(product, ri)"
+              class="p-button-rounded p-button-text p-button-danger"
+            ></button>
+          </div>
+        </td>
+      </tr>
+    </ng-template>
+  </p-table>
 </div>

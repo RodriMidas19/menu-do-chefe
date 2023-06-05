@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { MessageService, SelectItem } from 'primeng/api';
 import {
+  Clients,
   Funcionarios,
   Reservas,
 } from 'src/app/services/models/models.interface';
@@ -27,23 +28,27 @@ export class AdminDashboardComponent implements OnInit {
   selectedProduct?: Reservas;
 
   page: any = '';
-  data: any;
+  reserva: boolean = false;
+  cliente: boolean = false;
+
+  dataClientes: any;
 
   dataMesas: any;
   num_mesas: [] = [];
   mesasSelected: [] = [];
   restaurante: number = 0;
-  reserva: boolean = false;
   nPessoas: number = 0;
 
   ngOnInit(): void {
     this.router.paramMap.subscribe((params) => {
       this.page = params.get('nome');
       if (this.page === 'clientes') {
+        this.cliente = true;
         this.getAllClients();
       } else if (this.page === 'funcionarios') {
         this.getAllFunc();
       } else if (this.page === 'reservas') {
+        this.reserva = true;
         this.getAllReservas();
       }
     });
@@ -51,8 +56,8 @@ export class AdminDashboardComponent implements OnInit {
 
   async getAllClients() {
     await this.service.getAllClients().subscribe((res) => {
-      this.data = res.recordset;
-      console.log(this.data);
+      this.dataClientes = res.recordset;
+      console.log(this.dataClientes);
     });
   }
 
@@ -163,4 +168,10 @@ export class AdminDashboardComponent implements OnInit {
       }));
     });
   }
+
+  onRowEditInit(product: Clients) {}
+
+  onRowEditSave(product: Clients) {}
+
+  onRowEditCancel(product: Clients, index: number) {}
 }

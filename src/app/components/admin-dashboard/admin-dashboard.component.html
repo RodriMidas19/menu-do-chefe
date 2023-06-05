@@ -28,7 +28,26 @@
         <td>{{ product.data_reserva }}</td>
         <td>{{ product.hora_reserva }}</td>
         <td>{{ product.nomeCliente }}</td>
-        <td>{{ product.situacao }}</td>
+        <td>
+          <p-tag
+            *ngIf="product.situacao == 'Pendente'"
+            icon="pi pi-exclamation-triangle"
+            severity="warning"
+            value="Pendente"
+          ></p-tag>
+          <p-tag
+            *ngIf="product.situacao == 'Confirmada'"
+            icon="pi pi-check"
+            severity="success"
+            value="Confirmada"
+          ></p-tag>
+          <p-tag
+            *ngIf="product.situacao == 'Rejeitada'"
+            icon="pi pi-times"
+            severity="danger"
+            value="Rejeitada"
+          ></p-tag>
+        </td>
       </tr>
     </ng-template>
   </p-table>
@@ -39,7 +58,11 @@
     optionLabel="name"
   ></p-multiSelect>
   <div class="buttons">
-    <button class="btn btn-primary" *ngIf="reserva" (click)="confirm()">Confirmar Reserva</button>
-    <button class="btn btn-danger" *ngIf="reserva">Rejeitar Reserva</button>
+    <button class="btn btn-primary" *ngIf="reserva" (click)="confirm()">
+      Confirmar Reserva
+    </button>
+    <button class="btn btn-danger" *ngIf="reserva" (click)="deleteReserva()">
+      Rejeitar Reserva
+    </button>
   </div>
 </div>

@@ -27,6 +27,7 @@ import { AdminDashboardComponent } from './components/admin-dashboard/admin-dash
 import { ToastModule } from 'primeng/toast';
 import { MessageService } from 'primeng/api';
 import { MultiSelectModule } from 'primeng/multiselect';
+import { TagModule } from 'primeng/tag';
 
 @NgModule({
   declarations: [
@@ -51,6 +52,7 @@ import { MultiSelectModule } from 'primeng/multiselect';
     ToastModule,
     BrowserAnimationsModule,
     MultiSelectModule,
+    TagModule,
   ],
   providers: [MessageService],
   bootstrap: [AppComponent],

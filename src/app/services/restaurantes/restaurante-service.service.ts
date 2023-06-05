@@ -56,9 +56,20 @@ export class RestauranteServiceService {
   }
 
   async updateReserva(id: any, status: any) {
+    const headers = new HttpHeaders().set('Content-Type', 'application/json');
+
+    console.log(id + ' ' + status);
+    let data = { id: id, status: status };
     return await this.http.put<reservas>(
-      `http://localhost:3333/Updatereservas/${id}/${status}`,
-      id
+      `http://localhost:3333/Upreservas`,
+      data,
+      { headers }
+    );
+  }
+
+  async deleteReserva(id: any) {
+    return await this.http.delete<reservas>(
+      `http://localhost:3333/reservas/${id}`
     );
   }
 }

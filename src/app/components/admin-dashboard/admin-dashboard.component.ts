@@ -34,6 +34,7 @@ export class AdminDashboardComponent implements OnInit {
   mesasSelected: [] = [];
   restaurante: number = 0;
   reserva: boolean = false;
+  nPessoas: number = 0;
 
   ngOnInit(): void {
     this.router.paramMap.subscribe((params) => {
@@ -75,17 +76,35 @@ export class AdminDashboardComponent implements OnInit {
       data_reserva: this.data_reservas,
       hora_reserva: this.hora_reservas,
     };
-    (await this.rService.reservasAdm(data)).subscribe((resp) => {
+    if (this.mesasSelected.length < this.nPessoas / 2) {
       this.messageService.add({
-        severity: 'success',
-        summary: 'Reserva Confirmada',
-        detail: resp.message,
+        severity: 'warn',
+        summary: 'Mesas',
+        detail: 'Número de mesas insuficientes',
       });
-      this.UpdateStatus(this.id_reserva, 2);
-    });
+    } else {
+      (await this.rService.reservasAdm(data)).subscribe((resp) => {
+        this.messageService.add({
+          severity: 'success',
+          summary: 'Reserva Confirmada',
+          detail: resp.message,
+        });
+        this.UpdateStatus(this.id_reserva, 2);
+      });
+    }
   }
   async CancelReserva() {
     this.UpdateStatus(this.id_reserva, 3);
+  }
+  async deleteReserva() {
+    (await this.rService.deleteReserva(this.id_reserva)).subscribe((resp) => {
+      this.messageService.add({
+        severity: 'error',
+        summary: resp.message,
+        detail: resp.message,
+      });
+      this.UpdateStatus(this.id_reserva, 3);
+    });
   }
 
   async UpdateStatus(id_reserva: number, status: number) {
@@ -107,6 +126,7 @@ export class AdminDashboardComponent implements OnInit {
     this.data_reservas = event.data.data_reserva;
     this.hora_reservas = event.data.hora_reserva;
     this.reserva = true;
+    this.nPessoas = event.data.num_pessoas;
     this.messageService.add({
       severity: 'info',
       summary: 'Reserva selecionada',
@@ -132,6 +152,7 @@ export class AdminDashboardComponent implements OnInit {
   }
   onRowUnselect(event: any) {
     this.reserva = false;
+    this.num_mesas = [];
   }
   async getMesas(data: any) {
     (await this.rService.getMesas(data)).subscribe((resp) => {

@@ -30,8 +30,10 @@ export class AdminDashboardComponent implements OnInit {
   page: any = '';
   reserva: boolean = false;
   cliente: boolean = false;
+  funcionario: boolean = false;
 
   dataClientes: any;
+  dataFuncionarios: any;
 
   dataMesas: any;
   num_mesas: [] = [];
@@ -46,6 +48,7 @@ export class AdminDashboardComponent implements OnInit {
         this.cliente = true;
         this.getAllClients();
       } else if (this.page === 'funcionarios') {
+        this.funcionario = true;
         this.getAllFunc();
       } else if (this.page === 'reservas') {
         this.reserva = true;
@@ -63,7 +66,7 @@ export class AdminDashboardComponent implements OnInit {
 
   async getAllFunc() {
     await this.service.getAllFunc().subscribe((res) => {
-      this.products = res.recordset;
+      this.dataFuncionarios = res.recordset;
     });
   }
 

@@ -97,17 +97,19 @@
   </p-table>
 
   <p-table
-    [value]="dataClientes"
+    [value]="dataFuncionarios"
     dataKey="id"
     editMode="row"
     [tableStyle]="{ 'min-width': '50rem' }"
   >
     <ng-template pTemplate="header">
       <tr>
-        <th style="width: 20%">Code</th>
-        <th style="width: 20%">Name</th>
-        <th style="width: 20%">Inventory Status</th>
-        <th style="width: 20%">Price</th>
+        <th style="width: 20%">Funcionário</th>
+        <th style="width: 20%">Nome</th>
+        <th style="width: 20%">Idade</th>
+        <th style="width: 20%">Telefone</th>
+        <th style="width: 20%">Email</th>
+        <th style="width: 20%">Cargo</th>
         <th style="width: 20%"></th>
       </tr>
     </ng-template>
@@ -121,21 +123,70 @@
         <td>
           <p-cellEditor>
             <ng-template pTemplate="input">
-              <input pInputText type="text" [(ngModel)]="product.code" />
+              <input
+                pInputText
+                type="text"
+                [(ngModel)]="product.num_funcionario"
+              />
             </ng-template>
             <ng-template pTemplate="output">
-              {{ product.code }}
+              {{ product.num_funcionario }}
             </ng-template>
           </p-cellEditor>
         </td>
         <td>
-          <p-cellEditor> </p-cellEditor>
+          <p-cellEditor>
+            <ng-template pTemplate="input">
+              <input
+                pInputText
+                type="text"
+                [(ngModel)]="product.nome_funcionario"
+              />
+            </ng-template>
+            <ng-template pTemplate="output">
+              {{ product.nome_funcionario }}
+            </ng-template></p-cellEditor
+          >
         </td>
         <td>
-          <p-cellEditor> </p-cellEditor>
+          <p-cellEditor>
+            <ng-template pTemplate="input">
+              <input pInputText type="text" [(ngModel)]="product.idade" />
+            </ng-template>
+            <ng-template pTemplate="output">
+              {{ product.idade }}
+            </ng-template>
+          </p-cellEditor>
         </td>
         <td>
-          <p-cellEditor> </p-cellEditor>
+          <p-cellEditor>
+            <ng-template pTemplate="input">
+              <input pInputText type="text" [(ngModel)]="product.telefone" />
+            </ng-template>
+            <ng-template pTemplate="output">
+              {{ product.telefone }}
+            </ng-template>
+          </p-cellEditor>
+        </td>
+        <td>
+          <p-cellEditor>
+            <ng-template pTemplate="input">
+              <input pInputText type="text" [(ngModel)]="product.email" />
+            </ng-template>
+            <ng-template pTemplate="output">
+              {{ product.email }}
+            </ng-template>
+          </p-cellEditor>
+        </td>
+        <td>
+          <p-cellEditor>
+            <ng-template pTemplate="input">
+              <input pInputText type="text" [(ngModel)]="product.cargo" />
+            </ng-template>
+            <ng-template pTemplate="output">
+              {{ product.cargo }}
+            </ng-template>
+          </p-cellEditor>
         </td>
         <td>
           <div class="flex align-items-center justify-content-center gap-2">

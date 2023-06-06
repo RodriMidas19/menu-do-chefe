@@ -20,7 +20,6 @@ import { ReservasComponent } from './components/reservas/reservas.component';
 import { RegisterComponent } from './user/register/register.component';
 import { AdminComponent } from './admin/admin.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { io, Socket } from 'socket.io-client';
 //Prime NG
 import { TableModule } from 'primeng/table';
 import { AdminDashboardComponent } from './components/admin-dashboard/admin-dashboard.component';
@@ -28,6 +27,7 @@ import { ToastModule } from 'primeng/toast';
 import { MessageService } from 'primeng/api';
 import { MultiSelectModule } from 'primeng/multiselect';
 import { TagModule } from 'primeng/tag';
+import { ButtonModule } from 'primeng/button';
 
 @NgModule({
   declarations: [
@@ -53,6 +53,7 @@ import { TagModule } from 'primeng/tag';
     BrowserAnimationsModule,
     MultiSelectModule,
     TagModule,
+    ButtonModule,
   ],
   providers: [MessageService],
   bootstrap: [AppComponent],

@@ -4,6 +4,7 @@ import {
   ClientesResponse,
   FuncionariosResponse,
   loginResponse,
+  reservas,
 } from '../models/models.interface';
 import { Observable } from 'rxjs';
 import { Router } from '@angular/router';
@@ -44,6 +45,12 @@ export class UserServiceService {
 
   getAllClients() {
     return this.http.get<ClientesResponse>(`${this.apiUrl}/clientes`);
+  }
+
+  async deleteClient(id: number) {
+    return await this.http.delete<reservas>(
+      `${this.apiUrl}/deleteClient/${id}`
+    );
   }
 
   getAllFunc() {

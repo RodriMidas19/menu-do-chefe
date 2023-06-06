@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { MessageService } from 'primeng/api';
 import { RestauranteServiceService } from 'src/app/services/restaurantes/restaurante-service.service';
 import { UserServiceService } from 'src/app/services/userServices/user-service.service';
 
@@ -30,7 +31,8 @@ export class ReservasComponent implements OnInit {
   ];
   constructor(
     private service: UserServiceService,
-    private restauranteService: RestauranteServiceService
+    private restauranteService: RestauranteServiceService,
+    private messageService: MessageService
   ) {}
 
   ngOnInit(): void {
@@ -70,6 +72,11 @@ export class ReservasComponent implements OnInit {
     } else {
       (await this.restauranteService.createReserva(data)).subscribe((resp) => {
         console.log(resp.message);
+        this.messageService.add({
+          severity: 'success',
+          summary: 'Reserva',
+          detail: resp.message,
+        });
       });
     }
   }

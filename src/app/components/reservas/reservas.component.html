@@ -1,4 +1,5 @@
 <section class="main-sec-reservas" id="reservas">
+  <p-toast></p-toast>
   <main class="main-div" *ngIf="!login">
     <h1>Para realizar uma reserva, por favor faça o login.</h1>
     <a [routerLink]="'/login'"><button class="loginBtn">Login</button></a>
@@ -50,7 +51,7 @@
         </div>
         <div class="form-group">
           <select
-          [value]="0"
+            [value]="0"
             name=""
             id=""
             class="form-control"

@@ -31,6 +31,7 @@ export class AdminDashboardComponent implements OnInit {
   reserva: boolean = false;
   cliente: boolean = false;
   funcionario: boolean = false;
+  menu: boolean = false;
 
   dataClientes: any;
   dataFuncionarios: any;
@@ -46,13 +47,27 @@ export class AdminDashboardComponent implements OnInit {
       this.page = params.get('nome');
       if (this.page === 'clientes') {
         this.cliente = true;
+        this.reserva = false;
+        this.funcionario = false;
+        this.menu = false;
         this.getAllClients();
       } else if (this.page === 'funcionarios') {
         this.funcionario = true;
+        this.reserva = false;
+        this.cliente = false;
+        this.menu = false;
         this.getAllFunc();
       } else if (this.page === 'reservas') {
         this.reserva = true;
+        this.cliente = false;
+        this.funcionario = false;
+        this.menu = false;
         this.getAllReservas();
+      } else if (this.page === 'menus') {
+        this.reserva = false;
+        this.cliente = false;
+        this.funcionario = false;
+        this.menu = true;
       }
     });
   }
@@ -61,6 +76,15 @@ export class AdminDashboardComponent implements OnInit {
     await this.service.getAllClients().subscribe((res) => {
       this.dataClientes = res.recordset;
       console.log(this.dataClientes);
+    });
+  }
+  async deleteClient(id: number) {
+    (await this.service.deleteClient(id)).subscribe((resp) => {
+      this.messageService.add({
+        severity: 'error',
+        summary: 'Cliente',
+        detail: resp.message,
+      });
     });
   }
 

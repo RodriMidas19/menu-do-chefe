@@ -35,6 +35,9 @@ export class AdminDashboardComponent implements OnInit {
 
   dataClientes: any;
   dataFuncionarios: any;
+  cargos: any;
+  selectedCargo: any;
+  iscargo: boolean = true;
 
   dataMesas: any;
   num_mesas: [] = [];
@@ -89,6 +92,11 @@ export class AdminDashboardComponent implements OnInit {
   }
 
   async getAllFunc() {
+    this.cargos = [
+      { name: 'admin', code: 1 },
+      { name: 'Empregado de Mesa', code: 2 },
+      { name: 'Cozinheiro', code: 3 },
+    ];
     await this.service.getAllFunc().subscribe((res) => {
       this.dataFuncionarios = res.recordset;
     });

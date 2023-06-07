@@ -28,6 +28,7 @@ import { MessageService } from 'primeng/api';
 import { MultiSelectModule } from 'primeng/multiselect';
 import { TagModule } from 'primeng/tag';
 import { ButtonModule } from 'primeng/button';
+import { DropdownModule } from 'primeng/dropdown';
 
 @NgModule({
   declarations: [
@@ -53,6 +54,7 @@ import { ButtonModule } from 'primeng/button';
     BrowserAnimationsModule,
     MultiSelectModule,
     TagModule,
+    DropdownModule,
     ButtonModule,
   ],
   providers: [MessageService],

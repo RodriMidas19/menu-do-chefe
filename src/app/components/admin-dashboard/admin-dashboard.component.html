@@ -107,41 +107,35 @@
   <p-table
     [value]="dataFuncionarios"
     dataKey="num_funcionario"
+    editMode="row"
     [tableStyle]="{ 'min-width': '50rem' }"
   >
     <ng-template pTemplate="header">
       <tr>
-        <th>Funcionário</th>
-        <th>Nome</th>
-        <th>Idade</th>
-        <th>Telefone</th>
-        <th>Email</th>
-        <th>Cargo</th>
+        <th style="width: 20%">Funcionário</th>
+        <th style="width: 20%">Nome</th>
+        <th style="width: 20%">Idade</th>
+        <th style="width: 20%">Telefone</th>
+        <th style="width: 20%">Email</th>
+        <th style="width: 20%">Cargo</th>
+        <th style="width: 20%"></th>
       </tr>
     </ng-template>
-    <ng-template pTemplate="body" let-product let-editing="editing">
-      <tr>
-        <td
-          [pEditableColumn]="product.num_funcionario"
-          pEditableColumnField="code"
-        >
+    <ng-template
+      pTemplate="body"
+      let-product
+      let-editing="editing"
+      let-ri="rowIndex"
+    >
+      <tr [pEditableRow]="product">
+        <td>
           <p-cellEditor>
-            <ng-template pTemplate="input">
-              <input
-                pInputText
-                type="text"
-                [(ngModel)]="product.num_funcionario"
-              />
-            </ng-template>
             <ng-template pTemplate="output">
               {{ product.num_funcionario }}
             </ng-template>
           </p-cellEditor>
         </td>
-        <td
-          [pEditableColumn]="product.nome_funcionario"
-          pEditableColumnField="name"
-        >
+        <td>
           <p-cellEditor>
             <ng-template pTemplate="input">
               <input
@@ -156,48 +150,100 @@
             </ng-template>
           </p-cellEditor>
         </td>
-        <td
-          [pEditableColumn]="product.idade"
-          pEditableColumnField="inventoryStatus"
-        >
+        <td>
           <p-cellEditor>
             <ng-template pTemplate="input">
-              <input pInputText [(ngModel)]="product.idade" />
-            </ng-template>
-            <ng-template pTemplate="output">
-              {{ product.idade }}
-            </ng-template>
-          </p-cellEditor>
-        </td>
-        <td [pEditableColumn]="product.telefone" pEditableColumnField="price">
-          <p-cellEditor>
-            <ng-template pTemplate="input">
-              <input pInputText type="text" [(ngModel)]="product.telefone" />
+              <input
+                pInputText
+                type="text"
+                [(ngModel)]="product.telefone"
+                required
+              />
             </ng-template>
             <ng-template pTemplate="output">
               {{ product.telefone }}
             </ng-template>
           </p-cellEditor>
         </td>
-        <td [pEditableColumn]="product.email" pEditableColumnField="price">
+        <td>
           <p-cellEditor>
             <ng-template pTemplate="input">
-              <input pInputText type="text" [(ngModel)]="product.email" />
+              <input
+                pInputText
+                type="text"
+                [(ngModel)]="product.idade"
+                required
+              />
+            </ng-template>
+            <ng-template pTemplate="output">
+              {{ product.idade }}
+            </ng-template>
+          </p-cellEditor>
+        </td>
+        <td>
+          <p-cellEditor>
+            <ng-template pTemplate="input">
+              <input
+                pInputText
+                type="text"
+                [(ngModel)]="product.email"
+                required
+              />
             </ng-template>
             <ng-template pTemplate="output">
               {{ product.email }}
             </ng-template>
           </p-cellEditor>
         </td>
-        <td [pEditableColumn]="product.cargo" pEditableColumnField="price">
+        <td>
           <p-cellEditor>
             <ng-template pTemplate="input">
-              <input pInputText type="text" [(ngModel)]="product.cargo" />
+              <p-dropdown
+                [options]="cargos"
+                appendTo="body"
+                [(ngModel)]="product.cargo"
+                optionLabel="name"
+                [style]="{ width: '100%' }"
+              ></p-dropdown>
             </ng-template>
             <ng-template pTemplate="output">
               {{ product.cargo }}
             </ng-template>
           </p-cellEditor>
+        </td>
+        <td>
+          <div class="flex align-items-center justify-content-center gap-2">
+            <button
+              *ngIf="!editing"
+              pButton
+              pRipple
+              type="button"
+              pInitEditableRow
+              icon="pi pi-pencil"
+              (click)="onRowEditInit(product)"
+              class="p-button-rounded p-button-text"
+            ></button>
+            <button
+              *ngIf="editing"
+              pButton
+              pRipple
+              type="button"
+              pSaveEditableRow
+              icon="pi pi-check"
+              (click)="onRowEditSave(product)"
+              class="p-button-rounded p-button-text p-button-success mr-2"
+            ></button>
+            <button
+              *ngIf="editing"
+              pButton
+              pRipple
+              type="button"
+              pCancelEditableRow
+              icon="pi pi-times"
+              (click)="onRowEditCancel(product, ri)"
+              class="p-button-rounded p-button-text p-button-danger"
+            ></button>
+          </div>
         </td>
       </tr>
     </ng-template>

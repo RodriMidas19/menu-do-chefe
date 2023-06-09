@@ -11,13 +11,14 @@ import { UserServiceService } from 'src/app/services/userServices/user-service.s
 export class ReservasComponent implements OnInit {
   login: boolean = false;
   restaurantes: any;
+  selectedRestaurante: any;
   nPessoas: number = 0;
   restaurante: any;
   errorMessage: string | undefined;
   hora: any;
   dataReserva: any;
   horas: any[] = [
-    '12:00',
+    {name:'12:00',code:'12:00'},
     '13:00',
     '14:00',
     '15:00',
@@ -37,6 +38,7 @@ export class ReservasComponent implements OnInit {
 
   ngOnInit(): void {
     this.cheToken();
+    this.getRestaurantes();
   }
   cheToken(): boolean {
     const log = this.service.verifyToken();
@@ -52,9 +54,13 @@ export class ReservasComponent implements OnInit {
   }
 
   async getRestaurantes() {
-    (await this.restauranteService.getRestaurants()).subscribe((response) => {
-      this.restaurantes = response.recordset;
-    });
+    this.restaurante = [
+      { name: 'MC01', code: 1 },
+      { name: 'MC02', code: 2 },
+      { name: 'MC03', code: 3 },
+      { name: 'MC04', code: 4 },
+      { name: 'MC05', code: 5 },
+    ];
   }
 
   async reservarMesa() {
@@ -68,7 +74,11 @@ export class ReservasComponent implements OnInit {
       id_cliente: id,
     };
     if (new Date() > this.dataReserva) {
-      this.errorMessage = 'Data não é válida';
+      this.messageService.add({
+        severity: 'error',
+        summary: 'Data',
+        detail: 'Data não é válida',
+      });
     } else {
       (await this.restauranteService.createReserva(data)).subscribe((resp) => {
         console.log(resp.message);

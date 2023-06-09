@@ -12,32 +12,24 @@
       <div class="inputs">
         <span style="color: red">{{ errorMessage }}</span>
         <div class="form-group">
-          <select
-            name=""
-            id="selectRestaurante"
-            class="form-control"
-            [(ngModel)]="restaurante"
-            [ngModelOptions]="{ standalone: true }"
-          >
-            <option value="0" selected>Selecione um Restaurante</option>
-            <option
-              value="{{ item.num_restaurante }}"
-              *ngFor="let item of restaurantes"
-              class="options"
-            >
-              {{ item.nome }}
-            </option>
-          </select>
+          <p-dropdown
+            [options]="restaurantes"
+            [(ngModel)]="selectedRestaurante"
+            optionLabel="name"
+            placeholder="Selecrine um Restaurante"
+          ></p-dropdown>
         </div>
         <div class="form-group">
-          <input
-            type="number"
-            class="form-control"
-            required
+          <p-inputNumber
             [(ngModel)]="nPessoas"
-            placeholder="Nº de Pessoas"
-            [ngModelOptions]="{ standalone: true }"
-          />
+            mode="decimal"
+            [showButtons]="true"
+            inputId="minmax-buttons"
+            [min]="0"
+            [max]="50"
+            placeholder="Selecione o nº Pessoas"
+          >
+          </p-inputNumber>
         </div>
         <div class="form-group">
           <input

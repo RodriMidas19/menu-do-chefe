@@ -29,6 +29,7 @@ import { MultiSelectModule } from 'primeng/multiselect';
 import { TagModule } from 'primeng/tag';
 import { ButtonModule } from 'primeng/button';
 import { DropdownModule } from 'primeng/dropdown';
+import { InputNumberModule } from 'primeng/inputnumber';
 
 @NgModule({
   declarations: [
@@ -56,6 +57,7 @@ import { DropdownModule } from 'primeng/dropdown';
     TagModule,
     DropdownModule,
     ButtonModule,
+    InputNumberModule,
   ],
   providers: [MessageService],
   bootstrap: [AppComponent],

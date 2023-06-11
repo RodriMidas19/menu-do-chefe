@@ -30,6 +30,8 @@ import { TagModule } from 'primeng/tag';
 import { ButtonModule } from 'primeng/button';
 import { DropdownModule } from 'primeng/dropdown';
 import { InputNumberModule } from 'primeng/inputnumber';
+import { InputTextModule } from 'primeng/inputtext';
+import { DialogModule } from 'primeng/dialog';
 
 @NgModule({
   declarations: [
@@ -58,6 +60,8 @@ import { InputNumberModule } from 'primeng/inputnumber';
     DropdownModule,
     ButtonModule,
     InputNumberModule,
+    InputTextModule,
+    DialogModule,
   ],
   providers: [MessageService],
   bootstrap: [AppComponent],

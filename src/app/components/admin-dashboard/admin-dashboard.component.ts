@@ -28,6 +28,7 @@ export class AdminDashboardComponent implements OnInit {
   selectedProduct?: Reservas;
 
   page: any = '';
+  visible: boolean = false;
   reserva: boolean = false;
   cliente: boolean = false;
   funcionario: boolean = false;
@@ -44,6 +45,11 @@ export class AdminDashboardComponent implements OnInit {
   mesasSelected: [] = [];
   restaurante: number = 0;
   nPessoas: number = 0;
+
+  nomeFunc: string = '';
+  idadeFunc: number = 0;
+  telefoneFunc: string = '';
+  emailFunc: string = '';
 
   ngOnInit(): void {
     this.router.paramMap.subscribe((params) => {
@@ -204,9 +210,11 @@ export class AdminDashboardComponent implements OnInit {
     });
   }
 
-  onRowEditInit(product: Clients) {}
+  showDialog(id: any) {
+    this.visible = true;
+  }
 
-  onRowEditSave(product: Clients) {}
-
-  onRowEditCancel(product: Clients, index: number) {}
+  UpdateFunc() {
+    console.log(this.nomeFunc);
+  }
 }

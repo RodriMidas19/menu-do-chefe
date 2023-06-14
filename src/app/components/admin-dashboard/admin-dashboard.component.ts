@@ -4,6 +4,7 @@ import { MessageService } from 'primeng/api';
 import { Observable, Subscriber } from 'rxjs';
 import {
   Funcionarios,
+  Produto,
   Reservas,
 } from 'src/app/services/models/models.interface';
 import { RestauranteServiceService } from 'src/app/services/restaurantes/restaurante-service.service';
@@ -81,6 +82,7 @@ export class AdminDashboardComponent implements OnInit {
         this.cliente = false;
         this.funcionario = false;
         this.menu = true;
+        this.getAllProducts();
       }
     });
   }
@@ -263,7 +265,7 @@ export class AdminDashboardComponent implements OnInit {
   }
 
   //Menus
-  dataMenus: [] = [];
+  dataMenus: Produto[] = [];
   myImage!: Observable<any>;
   base64Code!: any;
   file: any;
@@ -271,9 +273,11 @@ export class AdminDashboardComponent implements OnInit {
   nome_prod: string = '';
   preco: number = 0;
   disponivel: number = 1;
+  menuModal: boolean = false;
 
   async confirmProduct() {
     await this.convertTo64(this.file);
+    this.menuModal = false;
   }
   async addProduct(file: any) {
     let data = {
@@ -282,7 +286,6 @@ export class AdminDashboardComponent implements OnInit {
       disponivel: this.disponivel,
       img: file,
     };
-    console.log(file);
     (await this.rService.addProduct(data)).subscribe((resp) => {
       this.messageService.add({
         severity: 'success',
@@ -315,5 +318,27 @@ export class AdminDashboardComponent implements OnInit {
       subscriber.error(error);
       subscriber.complete();
     };
+  }
+
+  getSeverity(status: number): string {
+    switch (status) {
+      case 1:
+        return 'success';
+      case 0:
+        return 'warning';
+      default:
+        return 'low';
+    }
+  }
+
+  async getAllProducts() {
+    (await this.rService.getAllProducts()).subscribe((resp) => {
+      this.dataMenus = resp.recordset;
+      console.log(this.dataMenus);
+    });
+  }
+
+  openModal() {
+    this.menuModal = true;
   }
 }

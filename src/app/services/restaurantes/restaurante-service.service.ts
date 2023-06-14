@@ -78,6 +78,11 @@ export class RestauranteServiceService {
     );
   }
 
+  async getAllProducts() {
+    return await this.http.get<produtosResponse>(
+      'http://localhost:3333/produtos'
+    );
+  }
   async addProduct(data: any) {
     const headers = new HttpHeaders().set('Content-Type', 'application/json');
     return await this.http.post<reservas>(

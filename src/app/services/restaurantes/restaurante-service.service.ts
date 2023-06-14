@@ -2,7 +2,9 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import {
   RestaurantResponse,
+  cargosResponse,
   mesasResponse,
+  produtosResponse,
   reservas,
   reservasResponse,
 } from '../models/models.interface';
@@ -37,6 +39,10 @@ export class RestauranteServiceService {
     );
   }
 
+  async getCargos() {
+    return await this.http.get<cargosResponse>('http://localhost:3333/cargos');
+  }
+
   async getMesas(data: any) {
     const headers = new HttpHeaders().set('Content-Type', 'application/json');
     return await this.http.post<mesasResponse>(
@@ -58,7 +64,6 @@ export class RestauranteServiceService {
   async updateReserva(id: any, status: any) {
     const headers = new HttpHeaders().set('Content-Type', 'application/json');
 
-    console.log(id + ' ' + status);
     let data = { id: id, status: status };
     return await this.http.put<reservas>(
       `http://localhost:3333/Upreservas`,
@@ -70,6 +75,15 @@ export class RestauranteServiceService {
   async deleteReserva(id: any) {
     return await this.http.delete<reservas>(
       `http://localhost:3333/reservas/${id}`
+    );
+  }
+
+  async addProduct(data: any) {
+    const headers = new HttpHeaders().set('Content-Type', 'application/json');
+    return await this.http.post<reservas>(
+      'http://localhost:3333/addProduct',
+      data,
+      { headers }
     );
   }
 }

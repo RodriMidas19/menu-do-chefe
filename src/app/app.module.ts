@@ -32,6 +32,7 @@ import { DropdownModule } from 'primeng/dropdown';
 import { InputNumberModule } from 'primeng/inputnumber';
 import { InputTextModule } from 'primeng/inputtext';
 import { DialogModule } from 'primeng/dialog';
+import { FileUploadModule } from 'primeng/fileupload';
 
 @NgModule({
   declarations: [
@@ -62,6 +63,7 @@ import { DialogModule } from 'primeng/dialog';
     InputNumberModule,
     InputTextModule,
     DialogModule,
+    FileUploadModule,
   ],
   providers: [MessageService],
   bootstrap: [AppComponent],

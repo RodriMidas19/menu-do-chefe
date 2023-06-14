@@ -104,7 +104,11 @@
     </ng-template>
   </p-table>
 
-  <p-table [value]="dataFuncionarios" [tableStyle]="{ 'min-width': '50rem' }">
+  <p-table
+    [value]="dataFuncionarios"
+    [tableStyle]="{ 'min-width': '50rem' }"
+    *ngIf="funcionario"
+  >
     <ng-template pTemplate="header">
       <tr>
         <th>Funcionário</th>
@@ -113,6 +117,7 @@
         <th>Telefone</th>
         <th>Email</th>
         <th>Cargo</th>
+        <th></th>
         <th></th>
       </tr>
     </ng-template>
@@ -131,8 +136,20 @@
               pRipple
               type="button"
               icon="pi pi-pencil"
-              (click)="showDialog(product.num_funcionario)"
+              (click)="showDialog(product)"
               class="p-button-rounded p-button-text"
+            ></button>
+          </div>
+        </td>
+        <td>
+          <div class="flex align-items-center justify-content-center">
+            <button
+              pButton
+              pRipple
+              type="button"
+              icon="pi pi-times"
+              class="p-button-rounded p-button-text p-button-danger"
+              (click)="deleteFunc(product.num_funcionario)"
             ></button>
           </div>
         </td>
@@ -148,27 +165,43 @@
     [resizable]="false"
   >
     <ng-template pTemplate="header">
-      <span class="text-xl font-bold">Header Content</span>
+      <span class="text-xl font-bold">Editar Funcionário</span>
     </ng-template>
-    <p>
-      <input
-        type="text"
-        pInputText
-        [(ngModel)]="nomeFunc"
-        [placeholder]="nomeFunc"
-      />
+    <p class="inputs">
+      <input type="text" pInputText [(ngModel)]="nomeFunc" placeholder="Nome" />
       <input
         type="text"
         pInputText
         [(ngModel)]="idadeFunc"
-        [placeholder]="idadeFunc"
+        placeholder="Idade"
       />
       <input
         type="text"
         pInputText
         [(ngModel)]="telefoneFunc"
-        [placeholder]="telefoneFunc"
+        placeholder="Telefone"
       />
+      <input
+        type="text"
+        pInputText
+        [(ngModel)]="emailFunc"
+        placeholder="Email"
+      />
+      <p-dropdown
+        [options]="cargosFunc"
+        [(ngModel)]="cargo"
+        optionLabel="name"
+        placeholder="Selecione o Cargo"
+        appendTo="body"
+      ></p-dropdown>
+      <button
+        pButton
+        pRipple
+        label="Salvar"
+        class="p-button-success"
+        (click)="UpdateFunc()"
+      ></button>
+
       <ng-template pTemplate="footer">
         <p-button
           icon="pi pi-check"
@@ -178,4 +211,30 @@
         ></p-button>
       </ng-template></p
   ></p-dialog>
+
+  <p-fileUpload
+    mode="basic"
+    name="demo[]"
+    url="https://www.primefaces.org/cdn/api/upload.php"
+    accept="image/*"
+    (onUpload)="onUpload($event)"
+    [auto]="true"
+    chooseLabel="Browse"
+  ></p-fileUpload>
+  <p-button icon="pi pi-check" (onClick)="confirmProduct()"></p-button>
+  <input
+    type="text"
+    pInputText
+    [(ngModel)]="nome_prod"
+    placeholder="Nome do Produto"
+  />
+  <p-inputNumber
+    [(ngModel)]="preco"
+    mode="currency"
+    inputId="currency-germany"
+    currency="EUR"
+    locale="de-DE"
+    placeholder="Valor"
+  >
+  </p-inputNumber>
 </div>

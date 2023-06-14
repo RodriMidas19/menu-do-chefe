@@ -56,4 +56,15 @@ export class UserServiceService {
   getAllFunc() {
     return this.http.get<FuncionariosResponse>(`${this.apiUrl}/funcionarios`);
   }
+
+  async updateFunc(data: any) {
+    const headers = new HttpHeaders().set('Content-Type', 'application/json');
+    return await this.http.put<reservas>(`${this.apiUrl}/updateFunc`, data, {
+      headers,
+    });
+  }
+
+  async deleteFunc(id: any) {
+    return await this.http.delete<reservas>(`${this.apiUrl}/deleteFunc/${id}`);
+  }
 }

@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { MessageService, SelectItem } from 'primeng/api';
+import { MessageService } from 'primeng/api';
+import { Observable, Subscriber } from 'rxjs';
 import {
-  Clients,
   Funcionarios,
   Reservas,
 } from 'src/app/services/models/models.interface';
@@ -46,10 +46,14 @@ export class AdminDashboardComponent implements OnInit {
   restaurante: number = 0;
   nPessoas: number = 0;
 
+  num_func: string = '';
   nomeFunc: string = '';
   idadeFunc: number = 0;
   telefoneFunc: string = '';
   emailFunc: string = '';
+  cargosFunc: [] = [];
+  cargosData: any;
+  cargo: any;
 
   ngOnInit(): void {
     this.router.paramMap.subscribe((params) => {
@@ -210,11 +214,106 @@ export class AdminDashboardComponent implements OnInit {
     });
   }
 
-  showDialog(id: any) {
+  async showDialog(data: any) {
     this.visible = true;
+    this.num_func = data.num_funcionario;
+    this.nomeFunc = data.nome_funcionario;
+    this.emailFunc = data.email;
+    this.idadeFunc = data.idade;
+    this.telefoneFunc = data.telefone;
+    this.cargo = data.cargo.code;
+
+    (await this.rService.getCargos()).subscribe((resp) => {
+      this.cargosData = resp.recordset;
+      this.cargosFunc = this.cargosData.map((cargo: any) => ({
+        name: cargo.nome_cargo,
+        code: cargo.id_cargo,
+      }));
+    });
   }
 
-  UpdateFunc() {
-    console.log(this.nomeFunc);
+  async UpdateFunc() {
+    let data = {
+      num: this.num_func,
+      nome: this.nomeFunc,
+      idade: this.idadeFunc,
+      telefone: this.telefoneFunc,
+      email: this.emailFunc,
+      cargo: this.cargo.code,
+    };
+    console.log(this.cargo);
+    (await this.service.updateFunc(data)).subscribe((resp) => {
+      this.messageService.add({
+        severity: 'success',
+        summary: 'Funcionário',
+        detail: resp.message,
+      });
+      this.visible = false;
+    });
+  }
+
+  async deleteFunc(id: any) {
+    (await this.service.deleteFunc(id)).subscribe((resp) => {
+      this.messageService.add({
+        severity: 'error',
+        summary: 'Funcionário',
+        detail: resp.message,
+      });
+    });
+  }
+
+  //Menus
+  dataMenus: [] = [];
+  myImage!: Observable<any>;
+  base64Code!: any;
+  file: any;
+
+  nome_prod: string = '';
+  preco: number = 0;
+  disponivel: number = 1;
+
+  async confirmProduct() {
+    await this.convertTo64(this.file);
+  }
+  async addProduct(file: any) {
+    let data = {
+      nome: this.nome_prod,
+      preco: this.preco,
+      disponivel: this.disponivel,
+      img: file,
+    };
+    console.log(file);
+    (await this.rService.addProduct(data)).subscribe((resp) => {
+      this.messageService.add({
+        severity: 'success',
+        summary: 'Produto',
+        detail: resp.message,
+      });
+    });
+  }
+
+  async onUpload(event: any) {
+    this.file = event.files[0];
+  }
+  async convertTo64(file: File) {
+    const observable = new Observable((subscriber: Subscriber<any>) => {
+      this.readFile(file, subscriber);
+    });
+
+    await observable.subscribe((d) => {
+      this.addProduct(d);
+    });
+  }
+  readFile(file: File, subscriber: Subscriber<any>) {
+    const filereader = new FileReader();
+    filereader.readAsDataURL(file);
+    filereader.onload = () => {
+      subscriber.next(filereader.result);
+      subscriber.complete();
+    };
+    filereader.onerror = (error) => {
+      subscriber.error(error);
+      subscriber.complete();
+    };
   }
 }

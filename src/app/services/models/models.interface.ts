@@ -83,3 +83,27 @@ export interface Mesas {
   num_restaurante: number;
   num_lugares: number;
 }
+export interface cargosResponse {
+  output: {};
+  recordset: Cargos[];
+  recordsets: [Cargos[]];
+  rowsAffected: [number];
+}
+export interface Cargos {
+  id_cargo: number;
+  nome_cargo: string;
+}
+
+export interface produtosResponse {
+  output: {};
+  recordset: Produto[];
+  recordsets: [Produto[]];
+  rowsAffected: [number];
+}
+export interface Produto{
+  id_produto: number;
+  nome_produto: string;
+  preco:number;
+  disponivel:boolean;
+  prod_imagem:string;
+}

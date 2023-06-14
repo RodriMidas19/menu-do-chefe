@@ -276,8 +276,9 @@ export class AdminDashboardComponent implements OnInit {
   menuModal: boolean = false;
 
   async confirmProduct() {
-    await this.convertTo64(this.file);
     this.menuModal = false;
+
+    await this.convertTo64(this.file);
   }
   async addProduct(file: any) {
     let data = {

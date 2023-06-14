@@ -229,7 +229,6 @@
         <th>Nome</th>
         <th>Imagem</th>
         <th>Preço</th>
-        <th>Status</th>
       </tr>
     </ng-template>
     <ng-template pTemplate="body" let-product>
@@ -245,12 +244,6 @@
           />
         </td>
         <td>{{ product.preco | currency : "EUR" }}</td>
-        <td>
-          <p-tag
-            [value]="product.disponivel"
-            [severity]="getSeverity(product.disponivel)"
-          ></p-tag>
-        </td>
       </tr>
     </ng-template>
   </p-table>

@@ -30,6 +30,7 @@
       fragment="reservas"
       ><h6 class="link">Reservas</h6></a
     >
+    <a [routerLink]="'/menus'"><h6 class="link">Menus</h6></a>
     <a href="" routerLinkActive="activeRouter"
       ><h6 class="link">Encomendas</h6></a
     >
@@ -42,10 +43,8 @@
     <a [routerLink]="'/perfil:id'" routerLinkActive="activeRouter"
       ><h6 *ngIf="loginBtn" class="link">Perfil</h6></a
     >
-    <a>
-      <h6 class="link-logout" *ngIf="loginBtn" (Click)="userLogout()">
-        Logout
-      </h6>
+    <a *ngIf="loginBtn" (Click)="userLogout()">
+      <h6 class="link-logout">Logout</h6>
     </a>
   </nav>
 
@@ -88,6 +87,14 @@
           [routerLink]="'/encomendas'"
           routerLinkActive="activeRouter"
           >Encomendas</a
+        >
+      </li>
+      <li>
+        <a
+          class="dropdown-item"
+          [routerLink]="'/menus'"
+          routerLinkActive="activeRouter"
+          >Menus</a
         >
       </li>
       <li>

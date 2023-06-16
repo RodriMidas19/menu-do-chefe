@@ -33,6 +33,7 @@ import { InputNumberModule } from 'primeng/inputnumber';
 import { InputTextModule } from 'primeng/inputtext';
 import { DialogModule } from 'primeng/dialog';
 import { FileUploadModule } from 'primeng/fileupload';
+import { MenusComponent } from './components/menus/menus.component';
 
 @NgModule({
   declarations: [
@@ -46,6 +47,7 @@ import { FileUploadModule } from 'primeng/fileupload';
     RegisterComponent,
     AdminComponent,
     AdminDashboardComponent,
+    MenusComponent,
   ],
   imports: [
     BrowserModule,

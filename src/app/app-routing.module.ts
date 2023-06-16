@@ -5,6 +5,7 @@ import { HomeComponent } from './home/home.component';
 import { AdminComponent } from './admin/admin.component';
 import { AdminDashboardComponent } from './components/admin-dashboard/admin-dashboard.component';
 import { RegisterComponent } from './user/register/register.component';
+import { MenusComponent } from './components/menus/menus.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
@@ -19,6 +20,7 @@ const routes: Routes = [
     component: AdminComponent,
     children: [{ path: ':nome', component: AdminDashboardComponent }],
   },
+  { path: 'menus', component: MenusComponent },
 ];
 
 const routerOptions: ExtraOptions = {

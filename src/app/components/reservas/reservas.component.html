@@ -17,6 +17,7 @@
             [(ngModel)]="selectedRestaurante"
             optionLabel="name"
             placeholder="Selecrine um Restaurante"
+            appendTo="body"
           ></p-dropdown>
         </div>
         <div class="form-group">
@@ -41,25 +42,13 @@
             [ngModelOptions]="{ standalone: true }"
           />
         </div>
-        <div class="form-group">
-          <select
-            [value]="0"
-            name=""
-            id=""
-            class="form-control"
+        <p-dropdown
+            [options]="horas"
             [(ngModel)]="hora"
-            [ngModelOptions]="{ standalone: true }"
-          >
-            <option value="0" selected>Selecione uma Hora</option>
-            <option
-              value="{{ item }}"
-              *ngFor="let item of horas"
-              class="options"
-            >
-              {{ item }}
-            </option>
-          </select>
-        </div>
+            optionLabel="name"
+            placeholder="Selecione a hora"
+            appendTo="body"
+          ></p-dropdown>
         <div class="form-group btnReserva">
           <button
             type="submit"

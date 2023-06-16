@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MessageService } from 'primeng/api';
+import { Restaurant } from 'src/app/services/models/models.interface';
 import { RestauranteServiceService } from 'src/app/services/restaurantes/restaurante-service.service';
 import { UserServiceService } from 'src/app/services/userServices/user-service.service';
 
@@ -13,23 +14,24 @@ export class ReservasComponent implements OnInit {
   restaurantes: any;
   selectedRestaurante: any;
   nPessoas: number = 0;
-  restaurante: any;
+  restaurante: [] = [];
   errorMessage: string | undefined;
   hora: any;
   dataReserva: any;
-  horas: any[] = [
-    {name:'12:00',code:'12:00'},
-    '13:00',
-    '14:00',
-    '15:00',
-    '16:00',
-    '17:00',
-    '18:00',
-    '19:00',
-    '20:00',
-    '21:00',
-    '22:00',
+  horas = [
+    { name: '12:00', code: '12:00' },
+    { name: '13:00', code: '13:00' },
+    { name: '14:00', code: '14:00' },
+    { name: '15:00', code: '15:00' },
+    { name: '16:00', code: '16:00' },
+    { name: '17:00', code: '17:00' },
+    { name: '18:00', code: '18:00' },
+    { name: '19:00', code: '19:00' },
+    { name: '20:00', code: '20:00' },
+    { name: '21:00', code: '21:00' },
+    { name: '22:00', code: '22:00' },
   ];
+  dataRestaurantes: Restaurant[] = [];
   constructor(
     private service: UserServiceService,
     private restauranteService: RestauranteServiceService,
@@ -54,13 +56,13 @@ export class ReservasComponent implements OnInit {
   }
 
   async getRestaurantes() {
-    this.restaurante = [
-      { name: 'MC01', code: 1 },
-      { name: 'MC02', code: 2 },
-      { name: 'MC03', code: 3 },
-      { name: 'MC04', code: 4 },
-      { name: 'MC05', code: 5 },
-    ];
+    (await this.restauranteService.getRestaurants()).subscribe((resp) => {
+      this.dataRestaurantes = resp.recordset;
+      this.restaurantes = this.dataRestaurantes.map((mesa: any) => ({
+        name: mesa.nome,
+        code: mesa.num_restaurante,
+      }));
+    });
   }
 
   async reservarMesa() {

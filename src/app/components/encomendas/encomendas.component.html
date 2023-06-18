@@ -3,20 +3,22 @@
   <div class="main-div">
     <div class="main-half">
       <div class="cards">
-        <div
-          class="card"
-          style="width: 15rem"
-          *ngFor="let item of dataProdutos"
-        >
-          <img
-            class="card-img-top"
-            [src]="item.prod_imagem"
-            alt="Card image cap"
-          />
-          <div class="card-body">
-            <h5 class="card-title">{{ item.nome_produto }}</h5>
-            <p class="card-text">{{ item.preco }}€</p>
-            <p-button icon="pi pi-plus"></p-button>
+        <div class="cardProd" *ngFor="let item of dataProdutos">
+          <div class="cardImg">
+            <img
+              src="{{ item.prod_imagem }}"
+              alt="{{ item.nome_produto }}"
+              class="img"
+            />
+          </div>
+          <div class="cardF">
+            <div class="cardText">
+              <h5 class="text">{{ item.nome_produto }}</h5>
+              <p class="text">{{ item.preco }}€</p>
+            </div>
+            <div class="cardbtn">
+              <p-button icon="pi pi-plus"></p-button>
+            </div>
           </div>
         </div>
       </div>

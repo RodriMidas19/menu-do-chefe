@@ -9,6 +9,7 @@ import { RestauranteServiceService } from 'src/app/services/restaurantes/restaur
 export class EncomendasComponent implements OnInit {
   constructor(private service: RestauranteServiceService) {}
   dataProdutos: any;
+  carrinho: [] = [];
   ngOnInit(): void {
     this.getAllProducts();
   }
@@ -18,5 +19,11 @@ export class EncomendasComponent implements OnInit {
       this.dataProdutos = resp.recordset;
       console.log(this.dataProdutos);
     });
+  }
+  
+  addCarrinho(data:any){
+    let preco = data.preco;
+    let nome = data.nome_produto;
+    let id = data.id_produto;
   }
 }

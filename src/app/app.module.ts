@@ -34,6 +34,7 @@ import { InputTextModule } from 'primeng/inputtext';
 import { DialogModule } from 'primeng/dialog';
 import { FileUploadModule } from 'primeng/fileupload';
 import { MenusComponent } from './components/menus/menus.component';
+import { CardModule } from 'primeng/card';
 import { EncomendasComponent } from './components/encomendas/encomendas.component';
 
 @NgModule({
@@ -68,6 +69,7 @@ import { EncomendasComponent } from './components/encomendas/encomendas.componen
     InputTextModule,
     DialogModule,
     FileUploadModule,
+    CardModule,
   ],
   providers: [MessageService],
   bootstrap: [AppComponent],

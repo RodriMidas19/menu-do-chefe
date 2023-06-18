@@ -6,7 +6,7 @@
 
   .main-div {
     height: 100%;
-    width: 50%;
+    width: 75%;
     flex-direction: row;
     display: flex;
     align-items: center;
@@ -22,20 +22,64 @@
     .cards {
       display: flex;
       flex-direction: row;
-    }
-    .card {
-      color: #fff;
-      margin: 5px;
-      background-color: #000;
-    }
-    .card-img-top {
-      height: 10rem;
+      margin-top: 10%;
+      flex-wrap: wrap;
+      height: 100%;
+      overflow-x: scroll;
+      width: 100%;
+
+      .cardProd {
+        border-radius: 10px;
+        display: flex;
+        width: 250px;
+        height: 300px;
+        flex-direction: column;
+        background-color: #000;
+        color: #fff;
+        margin-left: 5%;
+        margin-top: 5%;
+        .cardImg {
+          height: 60%;
+          width: 100%;
+          background-repeat: no-repeat;
+          background-size: cover;
+
+          .img {
+            height: 100%;
+            width: 100%;
+          }
+        }
+        .cardF {
+          width: 100%;
+          height: 40%;
+          display: flex;
+          flex-direction: row;
+          .cardText {
+            display: flex;
+            flex-direction: column;
+            width: 50%;
+            height: 100%;
+            justify-content: center;
+            word-break: normal;
+            .text {
+              margin-left: 2%;
+            }
+          }
+          .cardbtn {
+            width: 50%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+          }
+        }
+      }
     }
   }
 
   .sec-div {
     height: 100%;
-    width: 50%;
+    width: 25%;
     flex-direction: column;
     display: flex;
     align-items: center;

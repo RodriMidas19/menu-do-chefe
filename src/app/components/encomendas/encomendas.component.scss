@@ -1,0 +1,45 @@
+.main-sec {
+  display: flex;
+  width: 100vw;
+  height: 100vh;
+  flex-direction: row;
+
+  .main-div {
+    height: 100%;
+    width: 50%;
+    flex-direction: row;
+    display: flex;
+    align-items: center;
+    color: #fff !important;
+    background-color: #000;
+
+    .main-half {
+      display: flex;
+      height: 100%;
+      width: 100%;
+      flex-direction: column;
+    }
+    .cards {
+      display: flex;
+      flex-direction: row;
+    }
+    .card {
+      color: #fff;
+      margin: 5px;
+      background-color: #000;
+    }
+    .card-img-top {
+      height: 10rem;
+    }
+  }
+
+  .sec-div {
+    height: 100%;
+    width: 50%;
+    flex-direction: column;
+    display: flex;
+    align-items: center;
+    color: #fff !important;
+    background-color: #000;
+  }
+}

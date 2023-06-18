@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import {
+  Admin,
   ClientesResponse,
   FuncionariosResponse,
   loginResponse,
@@ -66,5 +67,11 @@ export class UserServiceService {
 
   async deleteFunc(id: any) {
     return await this.http.delete<reservas>(`${this.apiUrl}/deleteFunc/${id}`);
+  }
+
+  async getAdmin() {
+    const id = await this.getToken();
+    console.log(id);
+    return await this.http.get<FuncionariosResponse>(`${this.apiUrl}/admin/${id}`);
   }
 }

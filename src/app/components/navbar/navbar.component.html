@@ -40,7 +40,7 @@
     <a *ngIf="btnAdmin" [routerLink]="'/admin'" routerLinkActive="activeRouter"
       ><h6 class="link">Admin</h6></a
     >
-    <a [routerLink]="'/perfil:id'" routerLinkActive="activeRouter"
+    <a [routerLink]="'/perfil/:id'" routerLinkActive="activeRouter"
       ><h6 *ngIf="loginBtn" class="link">Perfil</h6></a
     >
     <a *ngIf="loginBtn" (Click)="userLogout()">

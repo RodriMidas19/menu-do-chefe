@@ -100,10 +100,13 @@ export interface produtosResponse {
   recordsets: [Produto[]];
   rowsAffected: [number];
 }
-export interface Produto{
+export interface Produto {
   id_produto: number;
   nome_produto: string;
-  preco:number;
-  disponivel:boolean;
-  prod_imagem:string;
+  preco: number;
+  disponivel: boolean;
+  prod_imagem: string;
+}
+export interface Admin {
+  nome_funcionario: string;
 }

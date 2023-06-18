@@ -1,6 +1,6 @@
 <section class="main-sec-admin">
   <aside class="sideBar" style="background-image: url(../../assets/wood.png)">
-    <h4 class="text-side">Bem-vindo {{ adminName }}</h4>
+    <h4 class="text-side">Bem-vindo {{ data.nome_funcionario }}</h4>
     <div class="items-side">
       <div class="item-side">
         <i class="pi pi-user" style="font-size: 1.5rem"></i>
@@ -9,19 +9,19 @@
         >
       </div>
       <div class="item-side">
-        <i class="pi pi-user" style="font-size: 1.5rem"></i>
-         <a class="lala" [routerLink]="['/admin', 'funcionarios']"
+        <i class="pi pi-users" style="font-size: 1.5rem"></i>
+        <a class="lala" [routerLink]="['/admin', 'funcionarios']"
           ><h6>Funcionários</h6></a
         >
       </div>
       <div class="item-side">
-        <lucide-icon name="BookDown"></lucide-icon>
+        <i class="pi pi-book" style="font-size: 1.5rem"></i>
         <a class="lala" [routerLink]="['/admin', 'reservas']"
           ><h6>Reservas</h6></a
         >
       </div>
       <div class="item-side">
-        <lucide-icon name="Book"></lucide-icon>
+        <i class="pi pi-microsoft" style="font-size: 1.5rem"></i>
         <a class="lala" [routerLink]="['/admin', 'menus']"><h6>Menus</h6></a>
       </div>
     </div>

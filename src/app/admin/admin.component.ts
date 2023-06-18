@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { UserServiceService } from '../services/userServices/user-service.service';
 
 @Component({
@@ -6,7 +6,17 @@ import { UserServiceService } from '../services/userServices/user-service.servic
   templateUrl: './admin.component.html',
   styleUrls: ['./admin.component.scss'],
 })
-export class AdminComponent {
+export class AdminComponent implements OnInit {
   constructor(private service: UserServiceService) {}
-  adminName: string = 'Rodrigo';
+  adminName: any;
+  data: any;
+  ngOnInit(): void {
+    this.getAdmin();
+  }
+
+  async getAdmin() {
+    (await this.service.getAdmin()).subscribe((resp) => {
+      this.data = resp.recordset;
+    });
+  }
 }

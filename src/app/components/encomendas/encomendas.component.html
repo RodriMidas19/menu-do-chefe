@@ -1,0 +1,28 @@
+<app-navbar></app-navbar>
+<section class="main-sec">
+  <div class="main-div">
+    <div class="main-half">
+      <div class="cards">
+        <div
+          class="card"
+          style="width: 15rem"
+          *ngFor="let item of dataProdutos"
+        >
+          <img
+            class="card-img-top"
+            [src]="item.prod_imagem"
+            alt="Card image cap"
+          />
+          <div class="card-body">
+            <h5 class="card-title">{{ item.nome_produto }}</h5>
+            <p class="card-text">{{ item.preco }}€</p>
+            <p-button icon="pi pi-plus"></p-button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="sec-div">
+    <p>ola</p>
+  </div>
+</section>

@@ -5,7 +5,6 @@ import { HomeComponent } from './home/home.component';
 import { AdminComponent } from './admin/admin.component';
 import { AdminDashboardComponent } from './components/admin-dashboard/admin-dashboard.component';
 import { RegisterComponent } from './user/register/register.component';
-import { MenusComponent } from './components/menus/menus.component';
 import { EncomendasComponent } from './components/encomendas/encomendas.component';
 
 const routes: Routes = [
@@ -21,7 +20,6 @@ const routes: Routes = [
     component: AdminComponent,
     children: [{ path: ':nome', component: AdminDashboardComponent }],
   },
-  { path: 'menus', component: MenusComponent },
   { path: 'encomendas', component: EncomendasComponent },
 ];
 

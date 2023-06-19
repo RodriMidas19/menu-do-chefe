@@ -30,9 +30,8 @@
       fragment="reservas"
       ><h6 class="link">Reservas</h6></a
     >
-    <a [routerLink]="'/menus'"><h6 class="link">Menus</h6></a>
     <a href="" routerLinkActive="activeRouter"
-      ><h6 class="link">Encomendas</h6></a
+      ><h6 class="link">Encomendar</h6></a
     >
     <a [routerLink]="'/login'" routerLinkActive="activeRouter"
       ><h6 *ngIf="!loginBtn" class="link">Login</h6></a
@@ -86,15 +85,7 @@
           class="dropdown-item"
           [routerLink]="'/encomendas'"
           routerLinkActive="activeRouter"
-          >Encomendas</a
-        >
-      </li>
-      <li>
-        <a
-          class="dropdown-item"
-          [routerLink]="'/menus'"
-          routerLinkActive="activeRouter"
-          >Menus</a
+          >Encomendar</a
         >
       </li>
       <li>

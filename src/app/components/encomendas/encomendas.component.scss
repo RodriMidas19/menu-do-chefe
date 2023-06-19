@@ -19,14 +19,18 @@
       width: 100%;
       flex-direction: column;
     }
+    .cards::-webkit-scrollbar {
+      display: none;
+    }
     .cards {
       display: flex;
       flex-direction: row;
-      margin-top: 10%;
       flex-wrap: wrap;
       height: 100%;
-      overflow-x: scroll;
+      overflow-y: scroll;
       width: 100%;
+      -ms-overflow-style: none; /* IE and Edge */
+      scrollbar-width: none; /* Firefox */
 
       .cardProd {
         border-radius: 10px;
@@ -83,7 +87,68 @@
     flex-direction: column;
     display: flex;
     align-items: center;
-    color: #fff !important;
-    background-color: #000;
+    color: #000 !important;
+    border-left: 1px solid #fff;
+
+    .car::-webkit-scrollbar {
+      display: none;
+    }
+    .car {
+      margin-top: 15%;
+      display: flex;
+      width: 100%;
+      height: 90%;
+      background-color: #000;
+      flex-direction: column;
+      color: #fff;
+      align-items: center;
+      overflow-y: scroll;
+      -ms-overflow-style: none; /* IE and Edge */
+      scrollbar-width: none; /* Firefox */
+      .showCar {
+        display: flex;
+        width: 90%;
+        height: 100px;
+        background-color: #000;
+        margin-top: 2%;
+        flex-direction: row;
+        justify-content: space-between;
+        border-top: 1px solid #fff;
+
+        .carText {
+          display: flex;
+          flex-direction: column;
+          width: 60%;
+          height: 100%;
+          justify-content: center;
+
+          p,
+          h4 {
+            margin-left: 2%;
+          }
+        }
+        .carBtn {
+          display: flex;
+          width: 40%;
+          height: 100%;
+          align-items: center;
+          align-items: center;
+          justify-content: space-around;
+          text-align: center;
+        }
+      }
+    }
+    .checkOutBtn {
+      display: flex;
+      width: 100%;
+      height: 10%;
+      background-color: #000;
+      align-items: center;
+      justify-content: center;
+    }
+    .btn-secondary {
+      width: 90%;
+      height: 50%;
+    }
   }
 }

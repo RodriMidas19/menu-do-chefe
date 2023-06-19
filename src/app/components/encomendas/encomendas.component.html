@@ -2,22 +2,30 @@
 <section class="main-sec">
   <div class="main-div">
     <div class="main-half">
+      <p-dropdown
+        [options]="restaurantes"
+        [(ngModel)]="selectedRestaurante"
+        optionLabel="name"
+        placeholder="Selecrine um Restaurante"
+        appendTo="body"
+        style="margin-top: 8%; margin-left: 5%"
+      ></p-dropdown>
       <div class="cards">
         <div class="cardProd" *ngFor="let item of dataProdutos">
           <div class="cardImg">
-            <img
-              src="{{ item.prod_imagem }}"
-              alt="{{ item.nome_produto }}"
-              class="img"
-            />
+            <img src="{{ item.imagem }}" alt="{{ item.nome }}" class="img" />
           </div>
           <div class="cardF">
             <div class="cardText">
-              <h5 class="text">{{ item.nome_produto }}</h5>
+              <h5 class="text">{{ item.nome }}</h5>
               <p class="text">{{ item.preco }}€</p>
             </div>
             <div class="cardbtn">
-              <p-button icon="pi pi-plus"></p-button>
+              <p-button
+                icon="pi pi-plus"
+                (click)="addCarrinho(item)"
+                styleClass="p-button-secondary"
+              ></p-button>
             </div>
           </div>
         </div>
@@ -25,6 +33,30 @@
     </div>
   </div>
   <div class="sec-div">
-    <p>ola</p>
+    <div class="car">
+      <div class="showCar" *ngFor="let item of carrinho">
+        <div class="carText">
+          <h4>{{ item.nome }}</h4>
+          <p>{{ item.preco }}€</p>
+        </div>
+        <div class="carBtn">
+          <p>{{ item.quant }}</p>
+          <p-button
+            icon="pi pi-minus"
+            (click)="removeFromCarrinho(item.id)"
+            styleClass="p-button-secondary"
+          ></p-button>
+
+          <p-button
+            icon="pi pi-plus"
+            (click)="addCarrinho(item)"
+            styleClass="p-button-secondary"
+          ></p-button>
+        </div>
+      </div>
+    </div>
+    <div class="checkOutBtn">
+      <button type="button" class="btn btn-secondary">Finalizar Compra</button>
+    </div>
   </div>
 </section>

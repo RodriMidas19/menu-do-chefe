@@ -71,7 +71,16 @@ export class UserServiceService {
 
   async getAdmin() {
     const id = await this.getToken();
-    console.log(id);
-    return await this.http.get<FuncionariosResponse>(`${this.apiUrl}/admin/${id}`);
+    return await this.http.get<FuncionariosResponse>(
+      `${this.apiUrl}/admin/${id}`
+    );
+  }
+
+  async encomenda(data: any) {
+    const headers = new HttpHeaders().set('Content-Type', 'application/json');
+
+    return await this.http.post<reservas>(`${this.apiUrl}/addEncomenda`, data, {
+      headers,
+    });
   }
 }

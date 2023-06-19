@@ -1,5 +1,6 @@
 import { SlicePipe } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
+import { MessageService } from 'primeng/api';
 import { Restaurant } from 'src/app/services/models/models.interface';
 import { RestauranteServiceService } from 'src/app/services/restaurantes/restaurante-service.service';
 import { UserServiceService } from 'src/app/services/userServices/user-service.service';
@@ -13,7 +14,8 @@ import { UserServiceService } from 'src/app/services/userServices/user-service.s
 export class EncomendasComponent implements OnInit {
   constructor(
     private service: RestauranteServiceService,
-    private uService: UserServiceService
+    private uService: UserServiceService,
+    private messageService: MessageService
   ) {}
   dataProdutos: any;
   carrinho: { id: any; nome: any; preco: any; quant: number }[] = [];
@@ -23,16 +25,31 @@ export class EncomendasComponent implements OnInit {
     this.getRestaurantes();
   }
 
+  moradaA: any;
+  modalOpen: boolean = false;
+  modal() {
+    this.modalOpen = true;
+  }
   async compra() {
     let id = await this.uService.getToken();
     let precoTotal = await this.getTotalPreco();
+    console.log(this.selectedRestaurante);
     let data = {
+      produtos: this.carrinho,
       funcionario: 'ADM',
-      precoTotal: precoTotal,
-      cliente: id,
+      preco: precoTotal,
+      cliente: 3,
       num_restaurante: this.selectedRestaurante,
-      moradaA: 'Rua das Trinas',
+      moradaA: this.moradaA,
     };
+    (await this.uService.encomenda(data)).subscribe((resp) => {
+      this.messageService.add({
+        severity: 'success',
+        summary: 'Encomenda',
+        detail: resp.message,
+      });
+      this.modalOpen = false;
+    });
   }
 
   async getAllProducts() {

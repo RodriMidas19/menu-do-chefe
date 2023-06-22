@@ -110,3 +110,21 @@ export interface Produto {
 export interface Admin {
   nome_funcionario: string;
 }
+
+export interface UserR {
+  nome: string;
+  data_reserva: string;
+  hora_reserva: string;
+  situacao: number;
+}
+
+export interface UserE {
+  nome: string;
+  preco_total: number;
+  situacao: number;
+}
+
+export interface UserP {
+  nome_produto: string;
+  quantidade_produto: number;
+}

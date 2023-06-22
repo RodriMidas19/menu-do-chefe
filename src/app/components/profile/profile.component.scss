@@ -1,3 +1,5 @@
+@import url("https://fonts.googleapis.com/css2?family=Smooch&display=swap");
+
 .main-sec {
   display: flex;
   width: 100vw;
@@ -22,6 +24,8 @@
         height: 100%;
         justify-content: center;
         align-items: center;
+        font-family: Smooch;
+        color: #fff;
 
         .avatar-image {
           background-color: #000;
@@ -34,6 +38,32 @@
         }
       }
       .user-info {
+        flex-direction: row;
+        display: flex;
+        width: 50%;
+        height: 100%;
+
+        .dados {
+          flex-direction: column;
+          display: flex;
+          width: 50%;
+          height: 100%;
+
+          .input-c {
+            margin: 10px;
+          }
+          .input-c1 {
+            margin: 10px;
+          }
+        }
+        .btnD {
+          flex-direction: column;
+          display: flex;
+          width: 50%;
+          height: 100%;
+          justify-content: center;
+          align-items: center;
+        }
       }
     }
     .info {
@@ -117,6 +147,12 @@
             .text-text {
               margin-left: 5px;
               margin-bottom: 5px;
+            }
+            .span-P {
+              color: green !important;
+            }
+            .span-P:hover {
+              text-decoration: underline !important;
             }
           }
         }

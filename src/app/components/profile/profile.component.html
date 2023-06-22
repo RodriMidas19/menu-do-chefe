@@ -3,101 +3,127 @@
   <div class="main-div">
     <div class="items">
       <div class="avatar">
-        <div
-          class="avatar-image"
-          style="background-image: url('../../../assets/wood.png')"
-        ></div>
+        <h1>Bem-Vindo {{ nome }}</h1>
       </div>
       <div class="user-info">
-
+        <div class="dados">
+          <input type="text" pInputText [(ngModel)]="nome" class="input-c" />
+          <input
+            type="text"
+            pInputText
+            [(ngModel)]="telefone"
+            class="input-c"
+          />
+          <input type="email" pInputText [(ngModel)]="email" class="input-c" />
+          <input type="text" pInputText [(ngModel)]="morada" class="input-c1" />
+        </div>
+        <div class="btnD">
+          <button
+            pButton
+            pRipple
+            label="Gravar"
+            class="p-button-success"
+          ></button>
+        </div>
       </div>
     </div>
     <div class="info">
       <div class="reservas">
-        <div class="client-card">
-          <img src="../../../assets/wood.png" alt="" class="image" />
+        <div class="client-card" *ngFor="let item of reservasData">
+          <img src="../../../assets/mesaI.png" alt="" class="image" />
           <div class="text">
-            <h6 class="text-text-1">Restaurante: MC01</h6>
-            <p class="text-text">Data : 13-05-2005</p>
-            <p class="text-text">Horas : 19h00</p>
-            <p class="text-text">Pessoas: 10</p>
+            <h6 class="text-text-1">Restaurante: {{ item.nome }}</h6>
+            <p class="text-text">Data : {{ item.data_reserva }}</p>
+            <p class="text-text">Horas : {{ item.hora_reserva }}</p>
+            <p-tag
+              *ngIf="item.situacao == '1'"
+              icon="pi pi-exclamation-triangle"
+              severity="warning"
+              value="Pendente"
+              class="text-text"
+            ></p-tag>
+            <p-tag
+              *ngIf="item.situacao == '2'"
+              icon="pi pi-check"
+              severity="success"
+              value="Confirmada"
+              class="text-text"
+            ></p-tag>
+            <p-tag
+              *ngIf="item.situacao == '3'"
+              icon="pi pi-times"
+              severity="danger"
+              value="Rejeitada"
+              class="text-text"
+            ></p-tag>
           </div>
         </div>
-        <div class="client-card">
-            <img src="../../../assets/wood.png" alt="" class="image" />
-            <div class="text">
-              <h6 class="text-text-1">Restaurante: MC01</h6>
-              <p class="text-text">Data : 13-05-2005</p>
-              <p class="text-text">Horas : 19h00</p>
-              <p class="text-text">Pessoas: 10</p>
-            </div>
-          </div>
-          <div class="client-card">
-            <img src="../../../assets/wood.png" alt="" class="image" />
-            <div class="text">
-              <h6 class="text-text-1">Restaurante: MC01</h6>
-              <p class="text-text">Data : 13-05-2005</p>
-              <p class="text-text">Horas : 19h00</p>
-              <p class="text-text">Pessoas: 10</p>
-            </div>
-          </div>
-          <div class="client-card">
-            <img src="../../../assets/wood.png" alt="" class="image" />
-            <div class="text">
-              <h6 class="text-text-1">Restaurante: MC01</h6>
-              <p class="text-text">Data : 13-05-2005</p>
-              <p class="text-text">Horas : 19h00</p>
-              <p class="text-text">Pessoas: 10</p>
-            </div>
-          </div>
-          <div class="client-card">
-            <img src="../../../assets/wood.png" alt="" class="image" />
-            <div class="text">
-              <h6 class="text-text-1">Restaurante: MC01</h6>
-              <p class="text-text">Data : 13-05-2005</p>
-              <p class="text-text">Horas : 19h00</p>
-              <p class="text-text">Pessoas: 10</p>
-            </div>
-          </div>
       </div>
       <div class="encomendas">
-        <div class="client-card">
-          <img src="../../../assets/wood.png" alt="" class="image" />
+        <div class="client-card" *ngFor="let item of encomendasData">
+          <img src="../../../assets/Enc.png" alt="" class="image" />
           <div class="text">
-            <h6 class="text-text-1">Restaurante: MC01</h6>
-            <p class="text-text">Data : 13-05-2005</p>
-            <p class="text-text">Horas : 19h00</p>
-            <p class="text-text">Pessoas: 10</p>
+            <h6 class="text-text-1">Restaurante: {{ item.nome }}</h6>
+            <p class="text-text">Preço : {{ item.preco_total }}€</p>
+            <p class="text-text">
+              Carrinho:
+              <span class="span-P" (click)="getProd(item.num_encomenda)"
+                >Ver mais...</span
+              >
+            </p>
+            <p-tag
+              *ngIf="item.situacao == '1'"
+              icon="pi pi-exclamation-triangle"
+              severity="warning"
+              value="Pendente"
+              class="text-text"
+            ></p-tag>
+            <p-tag
+              *ngIf="item.situacao == '2'"
+              icon="pi pi-check"
+              severity="success"
+              value="Confirmada"
+              class="text-text"
+            ></p-tag>
+            <p-tag
+              *ngIf="item.situacao == '3'"
+              icon="pi pi-times"
+              severity="danger"
+              value="Em Preparação"
+              class="text-text"
+            ></p-tag>
+            <p-tag
+              *ngIf="item.situacao == '4'"
+              icon="pi pi-times"
+              severity="danger"
+              value="A Caminho"
+              class="text-text"
+            ></p-tag>
+            <p-tag
+              *ngIf="item.situacao == '5'"
+              icon="pi pi-times"
+              severity="danger"
+              value="Entregue"
+              class="text-text"
+            ></p-tag>
           </div>
         </div>
-        <div class="client-card">
-            <img src="../../../assets/wood.png" alt="" class="image" />
-            <div class="text">
-              <h6 class="text-text-1">Restaurante: MC01</h6>
-              <p class="text-text">Data : 13-05-2005</p>
-              <p class="text-text">Horas : 19h00</p>
-              <p class="text-text">Pessoas: 10</p>
-            </div>
-          </div>
-          <div class="client-card">
-            <img src="../../../assets/wood.png" alt="" class="image" />
-            <div class="text">
-              <h6 class="text-text-1">Restaurante: MC01</h6>
-              <p class="text-text">Data : 13-05-2005</p>
-              <p class="text-text">Horas : 19h00</p>
-              <p class="text-text">Pessoas: 10</p>
-            </div>
-          </div>
-          <div class="client-card">
-            <img src="../../../assets/wood.png" alt="" class="image" />
-            <div class="text">
-              <h6 class="text-text-1">Restaurante: MC01</h6>
-              <p class="text-text">Data : 13-05-2005</p>
-              <p class="text-text">Horas : 19h00</p>
-              <p class="text-text">Pessoas: 10</p>
-            </div>
-          </div>
       </div>
     </div>
   </div>
 </section>
+
+<p-dialog
+  header="Carrinho"
+  [(visible)]="showModal"
+  [breakpoints]="{ '960px': '75vw' }"
+  [style]="{ width: '15vw' }"
+  [draggable]="false"
+  [resizable]="false"
+>
+  <ul>
+    <li *ngFor="let item of produtosData">
+      x{{ item.quantidade_produto }} {{ item.nome_produto }}
+    </li>
+  </ul>
+</p-dialog>

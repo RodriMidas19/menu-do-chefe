@@ -3,7 +3,11 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import {
   Admin,
   ClientesResponse,
+  Clients,
   FuncionariosResponse,
+  UserE,
+  UserP,
+  UserR,
   loginResponse,
   reservas,
 } from '../models/models.interface';
@@ -82,5 +86,23 @@ export class UserServiceService {
     return await this.http.post<reservas>(`${this.apiUrl}/addEncomenda`, data, {
       headers,
     });
+  }
+
+  async UserR() {
+    let id = await this.getToken();
+    return await this.http.get<UserR>(`${this.apiUrl}/UserR/${id}`);
+  }
+
+  async UserE() {
+    let id = await this.getToken();
+    return await this.http.get<UserE>(`${this.apiUrl}/userE/${id}`);
+  }
+  async UserP(id: number) {
+    return await this.http.get<UserP>(`${this.apiUrl}/userP/${id}`);
+  }
+
+  async getUser() {
+    let id = await this.getToken();
+    return await this.http.get(`${this.apiUrl}/user/${id}`);
   }
 }

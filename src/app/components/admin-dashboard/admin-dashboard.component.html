@@ -105,6 +105,75 @@
   </p-table>
 
   <p-table
+    [value]="dataEncomendas"
+    selectionMode="single"
+    [(selection)]="selectedEnc"
+    dataKey="num_encomenda"
+    [tableStyle]="{ 'min-width': '50rem' }"
+    *ngIf="encomenda"
+    (onRowSelect)="onRowSelect1($event)"
+    [paginator]="true"
+    [rows]="5"
+  >
+    <ng-template pTemplate="header">
+      <tr>
+        <th>Nº Encomenda</th>
+        <th>Cliente</th>
+        <th>Restaurante</th>
+        <th>Morada</th>
+        <th>Morada Alternativa</th>
+        <th>Situacao</th>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-product>
+      <tr [pSelectableRow]="product">
+        <td>{{ product.num_encomenda }}</td>
+        <td>{{ product.nomeC }}</td>
+        <td>{{ product.nome }}</td>
+        <td>{{ product.morada }}</td>
+        <td>{{ product.morada_alternativa }}</td>
+        <td>
+          <p-tag
+            *ngIf="product.situacao == '1'"
+            icon="pi pi-exclamation-triangle"
+            severity="warning"
+            value="Pendente"
+            class="text-text"
+          ></p-tag>
+          <p-tag
+            *ngIf="product.situacao == '2'"
+            icon="pi pi-check"
+            severity="success"
+            value="Confirmada"
+            class="text-text"
+          ></p-tag>
+          <p-tag
+            *ngIf="product.situacao == '3'"
+            icon="pi pi-stopwatch"
+            severity="warning"
+            value="Em Preparação"
+            class="text-text"
+          ></p-tag>
+          <p-tag
+            *ngIf="product.situacao == '4'"
+            icon="pi pi-car"
+            severity="warning"
+            value="A Caminho"
+            class="text-text"
+          ></p-tag>
+          <p-tag
+            *ngIf="product.situacao == '5'"
+            icon="pi pi-check"
+            severity="success"
+            value="Entregue"
+            class="text-text"
+          ></p-tag>
+        </td>
+      </tr>
+    </ng-template>
+  </p-table>
+
+  <p-table
     [value]="dataFuncionarios"
     [tableStyle]="{ 'min-width': '50rem' }"
     *ngIf="funcionario"
@@ -297,5 +366,39 @@
     </p>
   </p-dialog>
 
-  
+  <p-dialog
+    header="Pedido"
+    [(visible)]="showModalEnc"
+    [breakpoints]="{ '960px': '75vw' }"
+    [style]="{ width: '50vw' }"
+    [draggable]="false"
+    [resizable]="false"
+  >
+    <div class="modalzinho">
+      <div class="first">
+        <ul>
+          <li *ngFor="let item of prodEnc">
+            x{{ item.quantidade_produto }} {{ item.nome_produto }}
+          </li>
+        </ul>
+      </div>
+      <div class="second">
+        <p-dropdown
+          appendTo="body"
+          [options]="situacoes"
+          [(ngModel)]="selectedSituacao"
+          placeholder="Selecione a Situação"
+          optionLabel="name"
+        ></p-dropdown>
+      </div>
+    </div>
+    <ng-template pTemplate="footer">
+      <p-button
+        icon="pi pi-check"
+        (click)="updateStatusEnc()"
+        label="Confirmar"
+        styleClass="p-button-text"
+      ></p-button>
+    </ng-template>
+  </p-dialog>
 </div>

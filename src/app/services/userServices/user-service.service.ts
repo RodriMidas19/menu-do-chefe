@@ -4,6 +4,7 @@ import {
   Admin,
   ClientesResponse,
   Clients,
+  Encomenda,
   FuncionariosResponse,
   UserE,
   UserP,
@@ -104,5 +105,24 @@ export class UserServiceService {
   async getUser() {
     let id = await this.getToken();
     return await this.http.get(`${this.apiUrl}/user/${id}`);
+  }
+
+  async upClient(data: any) {
+    const headers = new HttpHeaders().set('Content-Type', 'application/json');
+    return await this.http.put<reservas>(`${this.apiUrl}/upCliente`, data, {
+      headers,
+    });
+  }
+
+  async getEncomendas() {
+    return await this.http.get<Encomenda>(`${this.apiUrl}/encomendas`);
+  }
+
+  async upStatusEnc(data: any) {
+    const headers = new HttpHeaders().set('Content-Type', 'application/json');
+
+    return await this.http.put<reservas>(`${this.apiUrl}/Upencomenda`, data, {
+      headers,
+    });
   }
 }

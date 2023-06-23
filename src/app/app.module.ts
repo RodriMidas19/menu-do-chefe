@@ -37,6 +37,7 @@ import { CardModule } from 'primeng/card';
 import { EncomendasComponent } from './components/encomendas/encomendas.component';
 import { PaginatorModule } from 'primeng/paginator';
 import { ProfileComponent } from './components/profile/profile.component';
+import { FooterComponent } from './components/footer/footer.component';
 
 @NgModule({
   declarations: [
@@ -52,6 +53,7 @@ import { ProfileComponent } from './components/profile/profile.component';
     AdminDashboardComponent,
     EncomendasComponent,
     ProfileComponent,
+    FooterComponent,
   ],
   imports: [
     BrowserModule,

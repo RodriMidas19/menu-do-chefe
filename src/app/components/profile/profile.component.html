@@ -4,6 +4,7 @@
     <div class="items">
       <div class="avatar">
         <h1>Bem-Vindo {{ nome }}</h1>
+        <h2>Abaixo veja as suas reservas e encomendas</h2>
       </div>
       <div class="user-info">
         <div class="dados">
@@ -23,6 +24,7 @@
             pRipple
             label="Gravar"
             class="p-button-success"
+            (click)="updateCliente()"
           ></button>
         </div>
       </div>
@@ -127,3 +129,4 @@
     </li>
   </ul>
 </p-dialog>
+<p-toast></p-toast>

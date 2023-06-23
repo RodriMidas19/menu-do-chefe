@@ -68,6 +68,16 @@ export interface Reservas {
   nomeCliente: string;
 }
 
+export interface Encomenda {
+  num_encomenda: number;
+  preco_total: number;
+  nomeC: string;
+  nome: string;
+  morada: string;
+  morada_alternativa: string;
+  situacao: number;
+}
+
 export interface reservas {
   message: string;
 }

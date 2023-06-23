@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { MessageService } from 'primeng/api';
 import { UserServiceService } from 'src/app/services/userServices/user-service.service';
 
 @Component({
@@ -7,17 +8,20 @@ import { UserServiceService } from 'src/app/services/userServices/user-service.s
   styleUrls: ['./profile.component.scss'],
 })
 export class ProfileComponent implements OnInit {
-  constructor(private service: UserServiceService) {}
+  constructor(
+    private service: UserServiceService,
+    private messageService: MessageService
+  ) {}
   reservasData: any;
   encomendasData: any;
   produtosData: any;
   showModal: boolean = false;
   userData: any;
 
-  nome:string = '';
-  telefone:string = '';
-  morada:string = '';
-  email:string = '';
+  nome: string = '';
+  telefone: string = '';
+  morada: string = '';
+  email: string = '';
 
   ngOnInit(): void {
     this.getReservas();
@@ -25,14 +29,14 @@ export class ProfileComponent implements OnInit {
     this.getUserData();
   }
 
-  async getUserData(){
-    (await this.service.getUser()).subscribe((resp:any)=>{
+  async getUserData() {
+    (await this.service.getUser()).subscribe((resp: any) => {
       this.userData = resp[0];
       this.nome = this.userData.nome;
       this.telefone = this.userData.telefone;
       this.morada = this.userData.morada;
       this.email = this.userData.email;
-    })
+    });
   }
   async getReservas() {
     (await this.service.UserR()).subscribe((resp) => {
@@ -49,5 +53,23 @@ export class ProfileComponent implements OnInit {
       this.produtosData = resp;
     });
     this.showModal = true;
+  }
+
+  async updateCliente() {
+    let id = await this.service.getToken();
+    let data = {
+      id: id,
+      nome: this.nome,
+      telefone: this.telefone,
+      email: this.email,
+      morada: this.morada,
+    };
+    (await this.service.upClient(data)).subscribe((resp) => {
+      this.messageService.add({
+        severity: 'success',
+        summary: this.nome,
+        detail: resp.message,
+      });
+    });
   }
 }

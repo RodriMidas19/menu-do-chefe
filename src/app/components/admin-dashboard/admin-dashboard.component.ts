@@ -6,6 +6,7 @@ import {
   Funcionarios,
   Produto,
   Reservas,
+  UserE,
 } from 'src/app/services/models/models.interface';
 import { RestauranteServiceService } from 'src/app/services/restaurantes/restaurante-service.service';
 import { UserServiceService } from 'src/app/services/userServices/user-service.service';
@@ -27,6 +28,7 @@ export class AdminDashboardComponent implements OnInit {
 
   dataReservas: Reservas[] = [];
   selectedProduct?: Reservas;
+  selectedEnc: UserE[] = [];
 
   page: any = '';
   visible: boolean = false;
@@ -34,9 +36,17 @@ export class AdminDashboardComponent implements OnInit {
   cliente: boolean = false;
   funcionario: boolean = false;
   menu: boolean = false;
+  encomenda: boolean = false;
 
   dataClientes: any;
   dataFuncionarios: any;
+  dataEncomendas: any;
+  showModalEnc: boolean = false;
+  situacoes: any;
+  selectedSituacao: any;
+  encId: any;
+
+  prodEnc: any;
   cargos: any;
   selectedCargo: any;
   iscargo: boolean = true;
@@ -64,26 +74,72 @@ export class AdminDashboardComponent implements OnInit {
         this.reserva = false;
         this.funcionario = false;
         this.menu = false;
+        this.encomenda = false;
         this.getAllClients();
       } else if (this.page === 'funcionarios') {
         this.funcionario = true;
         this.reserva = false;
         this.cliente = false;
+        this.encomenda = false;
         this.menu = false;
         this.getAllFunc();
       } else if (this.page === 'reservas') {
         this.reserva = true;
         this.cliente = false;
         this.funcionario = false;
+        this.encomenda = false;
         this.menu = false;
         this.getAllReservas();
       } else if (this.page === 'menus') {
         this.reserva = false;
         this.cliente = false;
         this.funcionario = false;
+        this.encomenda = false;
         this.menu = true;
         this.getAllProducts();
+      } else if (this.page === 'encomendas') {
+        this.reserva = false;
+        this.cliente = false;
+        this.funcionario = false;
+        this.encomenda = true;
+        this.menu = false;
+        this.getAllEncomendas();
       }
+    });
+  }
+
+  async getAllEncomendas() {
+    (await this.service.getEncomendas()).subscribe((resp) => {
+      this.dataEncomendas = resp;
+    });
+  }
+  async getPrdEncomendas(id: number) {
+    (await this.service.UserP(id)).subscribe((resp) => {
+      this.prodEnc = resp;
+    });
+  }
+  onRowSelect1(event: any) {
+    this.encId = event.data.num_encomenda;
+    this.situacoes = [
+      { name: 'Pendente', code: 1 },
+      { name: 'Confirmada', code: 2 },
+      { name: 'Em Preparação', code: 3 },
+      { name: 'A Caminho', code: 4 },
+      { name: 'Entregue', code: 5 },
+    ];
+    this.showModalEnc = true;
+    this.getPrdEncomendas(event.data.num_encomenda);
+    this.selectedSituacao = event.data.situacao;
+  }
+  async updateStatusEnc() {
+    this.showModalEnc = false;
+    let data = { id: this.encId, situacao: this.selectedSituacao.code };
+    (await this.service.upStatusEnc(data)).subscribe((resp) => {
+      this.messageService.add({
+        severity: 'success',
+        summary: `Encomenda ${this.encId}`,
+        detail: resp.message,
+      });
     });
   }
 

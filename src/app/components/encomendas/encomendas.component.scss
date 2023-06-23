@@ -18,6 +18,11 @@
       height: 100%;
       width: 100%;
       flex-direction: column;
+
+      .drop {
+        margin-top: 8%;
+        margin-left: 5%;
+      }
     }
     .cards::-webkit-scrollbar {
       display: none;

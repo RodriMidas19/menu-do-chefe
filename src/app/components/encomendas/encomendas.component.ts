@@ -1,7 +1,10 @@
 import { SlicePipe } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { MessageService } from 'primeng/api';
-import { Restaurant } from 'src/app/services/models/models.interface';
+import {
+  Restaurant,
+  RestauranteD,
+} from 'src/app/services/models/models.interface';
 import { RestauranteServiceService } from 'src/app/services/restaurantes/restaurante-service.service';
 import { UserServiceService } from 'src/app/services/userServices/user-service.service';
 
@@ -28,22 +31,23 @@ export class EncomendasComponent implements OnInit {
   moradaA: any;
   modalOpen: boolean = false;
   modal() {
+    console.log(this.selectedRestaurante);
     this.modalOpen = true;
   }
   async compra() {
     let id = await this.uService.getToken();
     let precoTotal = await this.getTotalPreco();
-    console.log(this.selectedRestaurante);
     let data = {
       produtos: this.carrinho,
       funcionario: 'ADM',
       preco: precoTotal,
-      cliente: 3,
-      num_restaurante: this.selectedRestaurante,
+      cliente: id,
+      num_restaurante: this.selectedRestaurante?.code,
       moradaA: this.moradaA,
+      situacao:1
     };
     (await this.uService.encomenda(data)).subscribe((resp) => {
-      this.messageService.add({
+       this.messageService.add({
         severity: 'success',
         summary: 'Encomenda',
         detail: resp.message,
@@ -100,8 +104,9 @@ export class EncomendasComponent implements OnInit {
     }
   }
   dataRestaurantes: Restaurant[] = [];
+  restaurantes: RestauranteD[] = [];
   selectedRestaurante: any;
-  restaurantes: any;
+
   async getRestaurantes() {
     (await this.service.getRestaurants()).subscribe((resp) => {
       this.dataRestaurantes = resp.recordset;

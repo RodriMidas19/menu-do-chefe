@@ -48,6 +48,12 @@ export class UserServiceService {
       headers,
     });
   }
+  userRegister(data: any) {
+    const headers = new HttpHeaders().set('Content-Type', 'application/json');
+    return this.http.post<reservas>(`${this.apiUrl}/register`, data, {
+      headers,
+    });
+  }
 
   getAllClients() {
     return this.http.get<ClientesResponse>(`${this.apiUrl}/clientes`);

@@ -138,3 +138,7 @@ export interface UserP {
   nome_produto: string;
   quantidade_produto: number;
 }
+export interface RestauranteD{
+  name:string;
+  code:number;
+}

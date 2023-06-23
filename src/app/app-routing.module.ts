@@ -7,6 +7,8 @@ import { AdminDashboardComponent } from './components/admin-dashboard/admin-dash
 import { RegisterComponent } from './user/register/register.component';
 import { EncomendasComponent } from './components/encomendas/encomendas.component';
 import { ProfileComponent } from './components/profile/profile.component';
+import { permsGuard } from './services/core/guards/perms.guard';
+import { loginGuard } from './services/core/guards/login.guard';
 
 const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
@@ -20,11 +22,13 @@ const routes: Routes = [
     path: 'admin',
     component: AdminComponent,
     children: [{ path: ':nome', component: AdminDashboardComponent }],
+    canActivate: [permsGuard],
   },
   { path: 'encomendas', component: EncomendasComponent },
   {
     path: 'perfil',
     component: ProfileComponent,
+    canActivate: [loginGuard],
   },
 ];
 

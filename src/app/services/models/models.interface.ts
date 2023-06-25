@@ -146,3 +146,13 @@ export interface ReservasD{
   name:string;
   code:string;
 }
+export interface CategoriasResponse{
+  output: {};
+  recordset: Categorias[];
+  recordsets: [Categorias[]];
+  rowsAffected: [number];
+}
+export interface Categorias{
+  id_categoria:number;
+  nome:string;
+}

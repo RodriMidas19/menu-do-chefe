@@ -2,14 +2,28 @@
 <section class="main-sec">
   <div class="main-div">
     <div class="main-half">
-      <p-dropdown
-        [options]="restaurantes"
-        [(ngModel)]="selectedRestaurante"
-        optionLabel="name"
-        placeholder="Selecione um Restaurante"
-        appendTo="body"
-        class="drop"
-      ></p-dropdown>
+      <div class="dropM">
+        <p-dropdown
+          [options]="restaurantes"
+          [(ngModel)]="selectedRestaurante"
+          optionLabel="name"
+          placeholder="Selecione um Restaurante"
+          appendTo="body"
+          class="drop"
+          optionValue="code"
+          [ngModelOptions]="{ standalone: true }"
+        ></p-dropdown
+        ><p-dropdown
+          [options]="categorias"
+          [(ngModel)]="selectedCategoria"
+          optionLabel="nome"
+          placeholder="Selecione uma Categoria"
+          appendTo="body"
+          class="drop"
+          [ngModelOptions]="{ standalone: true }"
+          (onChange)="onCategoriaChange()"
+        ></p-dropdown>
+      </div>
       <div class="cards">
         <div class="cardProd" *ngFor="let item of dataProdutos">
           <div class="cardImg">

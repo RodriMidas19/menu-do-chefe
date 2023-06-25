@@ -2,6 +2,7 @@ import { SlicePipe } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { MessageService } from 'primeng/api';
 import {
+  Categorias,
   Restaurant,
   RestauranteD,
 } from 'src/app/services/models/models.interface';
@@ -26,6 +27,7 @@ export class EncomendasComponent implements OnInit {
   ngOnInit(): void {
     this.getAllProducts();
     this.getRestaurantes();
+    this.getCategorias();
   }
 
   moradaA: any;
@@ -34,26 +36,73 @@ export class EncomendasComponent implements OnInit {
     console.log(this.selectedRestaurante);
     this.modalOpen = true;
   }
-  async compra() {
-    let id = await this.uService.getToken();
-    let precoTotal = await this.getTotalPreco();
-    let data = {
-      produtos: this.carrinho,
-      funcionario: 'ADM',
-      preco: precoTotal,
-      cliente: id,
-      num_restaurante: this.selectedRestaurante?.code,
-      moradaA: this.moradaA,
-      situacao:1
-    };
-    (await this.uService.encomenda(data)).subscribe((resp) => {
-       this.messageService.add({
-        severity: 'success',
-        summary: 'Encomenda',
-        detail: resp.message,
-      });
-      this.modalOpen = false;
+  categorias: Categorias[] = [];
+  selectedCategoria?: Categorias | undefined;
+  async getCategorias() {
+    (await this.service.getCategorias()).subscribe((resp) => {
+      this.categorias = resp.recordset;
     });
+  }
+  async compra() {
+    if (
+      this.selectedRestaurante == null ||
+      this.selectedRestaurante == undefined
+    ) {
+      this.messageService.add({
+        severity: 'error',
+        summary: 'Encomenda',
+        detail: 'Selecione um Restaurante',
+      });
+    } else if (this.carrinho.length == 0) {
+      this.messageService.add({
+        severity: 'error',
+        summary: 'Encomenda',
+        detail: 'Carrinho Vazio',
+      });
+    } else {
+      let id = await this.uService.getToken();
+      let precoTotal = await this.getTotalPreco();
+      let data = {
+        produtos: this.carrinho,
+        funcionario: 'ADM',
+        preco: precoTotal,
+        cliente: id,
+        num_restaurante: this.selectedRestaurante,
+        moradaA: this.moradaA,
+        situacao: 1,
+      };
+      (await this.uService.encomenda(data)).subscribe((resp) => {
+        this.messageService.add({
+          severity: 'success',
+          summary: 'Encomenda',
+          detail: resp.message,
+        });
+        this.modalOpen = false;
+      });
+    }
+  }
+
+  onCategoriaChange() {
+    if (this.selectedCategoria) {
+      this.getProdCat();
+    } else {
+      this.getAllProducts();
+    }
+  }
+
+  async getProdCat() {
+    if (this.selectedCategoria) {
+      const cat = this.selectedCategoria.id_categoria;
+      (await this.service.getCatProd(cat)).subscribe((resp) => {
+        this.dataProdutos = resp.recordset.map((mesa: any) => ({
+          id: mesa.id_produto,
+          nome: mesa.nome_produto,
+          preco: mesa.preco,
+          quant: 1,
+          imagem: mesa.prod_imagem,
+        }));
+      });
+    }
   }
 
   async getAllProducts() {

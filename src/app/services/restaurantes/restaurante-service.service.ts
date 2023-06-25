@@ -1,6 +1,8 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import {
+  Categorias,
+  CategoriasResponse,
   RestaurantResponse,
   cargosResponse,
   mesasResponse,
@@ -90,5 +92,12 @@ export class RestauranteServiceService {
       data,
       { headers }
     );
+  }
+
+  async getCategorias(){
+    return await this.http.get<CategoriasResponse>('http://localhost:3333/categorias');
+  }
+  async getCatProd(cat:number){
+    return await this.http.get<produtosResponse>(`http://localhost:3333/prodCat/${cat}`);
   }
 }

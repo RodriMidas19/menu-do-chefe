@@ -14,14 +14,15 @@ import { UserServiceService } from 'src/app/services/userServices/user-service.s
   styleUrls: ['./reservas.component.scss'],
 })
 export class ReservasComponent implements OnInit {
-  login: boolean = false;
-  restaurantes: any;
-  selectedRestaurante: any;
+  constructor(
+    private User: UserServiceService,
+    private restaurante: RestauranteServiceService,
+    private messageService: MessageService
+  ) {}
+  restaurantesData: Restaurant[] = [];
+  selectedRestaurante?: Restaurant;
   nPessoas: number = 0;
-  restaurante: [] = [];
-  errorMessage: string | undefined;
   hora: any;
-  dataReserva: any;
   horas: ReservasD[] = [
     { name: '12:00', code: '12:00' },
     { name: '13:00', code: '13:00' },
@@ -35,19 +36,15 @@ export class ReservasComponent implements OnInit {
     { name: '21:00', code: '21:00' },
     { name: '22:00', code: '22:00' },
   ];
-  dataRestaurantes: Restaurant[] = [];
-  constructor(
-    private service: UserServiceService,
-    private restauranteService: RestauranteServiceService,
-    private messageService: MessageService
-  ) {}
-
+  login: boolean = false;
+  dataReserva: any;
   ngOnInit(): void {
     this.cheToken();
     this.getRestaurantes();
   }
+
   cheToken(): boolean {
-    const log = this.service.verifyToken();
+    const log = this.User.verifyToken();
 
     if (log == true) {
       this.login = true;
@@ -60,36 +57,42 @@ export class ReservasComponent implements OnInit {
   }
 
   async getRestaurantes() {
-    (await this.restauranteService.getRestaurants()).subscribe((resp) => {
-      this.dataRestaurantes = resp.recordset;
-      this.restaurantes = this.dataRestaurantes.map((mesa: any) => ({
-        name: mesa.nome,
-        code: mesa.num_restaurante,
-      }));
+    (await this.restaurante.getRestaurants()).subscribe((resp) => {
+      this.restaurantesData = resp.recordset;
     });
   }
 
   async reservarMesa() {
-    let id = await this.service.getToken();
-    let data = {
-      num_restaurante: this.restaurante,
-      num_pessoas: this.nPessoas,
-      data_reserva: this.dataReserva,
-      situacao: 0,
-      hora_reserva: this.hora.code,
-      id_cliente: id,
-    };
-    if (new Date() > new Date(this.dataReserva + ' ' + this.hora.code)) {
-      console.log('nao da ');
-    } else {
-      (await this.restauranteService.createReserva(data)).subscribe((resp) => {
-        console.log(resp.message);
+    console.log(this.selectedRestaurante);
+    console.log(this.hora)
+    let id = await this.User.getToken();
+      console.log(this.selectedRestaurante);
+      let data = {
+        num_restaurante: this.selectedRestaurante,
+        num_pessoas: this.nPessoas,
+        data_reserva: this.dataReserva,
+        situacao: 0,
+        hora_reserva: this.hora,
+        id_cliente: id,
+      };
+      if (new Date() > new Date(this.dataReserva + ' ' + this.hora)) {
         this.messageService.add({
-          severity: 'success',
+          severity: 'error',
           summary: 'Reserva',
-          detail: resp.message,
+          detail: 'Data não válida',
         });
-      });
+      } else {
+        (await this.restaurante.createReserva(data)).subscribe(
+          (resp) => {
+            console.log(resp.message);
+            this.messageService.add({
+              severity: 'success',
+              summary: 'Reserva',
+              detail: resp.message,
+            });
+          }
+        );
+   
     }
   }
 }

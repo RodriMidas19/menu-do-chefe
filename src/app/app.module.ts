@@ -38,6 +38,7 @@ import { EncomendasComponent } from './components/encomendas/encomendas.componen
 import { PaginatorModule } from 'primeng/paginator';
 import { ProfileComponent } from './components/profile/profile.component';
 import { FooterComponent } from './components/footer/footer.component';
+import { CalendarModule } from 'primeng/calendar';
 
 @NgModule({
   declarations: [
@@ -74,6 +75,7 @@ import { FooterComponent } from './components/footer/footer.component';
     FileUploadModule,
     CardModule,
     PaginatorModule,
+    CalendarModule,
   ],
   providers: [MessageService],
   bootstrap: [AppComponent],

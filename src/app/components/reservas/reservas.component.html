@@ -10,14 +10,15 @@
         <img src="../../../assets/mesa.png" alt="" />
       </div>
       <div class="inputs">
-        <span style="color: red">{{ errorMessage }}</span>
         <div class="form-group">
           <p-dropdown
-            [options]="restaurantes"
+            [options]="restaurantesData"
             [(ngModel)]="selectedRestaurante"
-            optionLabel="name"
-            placeholder="Selecrine um Restaurante"
+            optionLabel="nome"
+            placeholder="Selecione um Restaurante"
             appendTo="body"
+            optionValue="num_restaurante"
+            [ngModelOptions]="{ standalone: true }"
           ></p-dropdown>
         </div>
         <div class="form-group">
@@ -31,6 +32,7 @@
             placeholder="Selecione o nº Pessoas"
             decrementButtonClass="p-button-danger"
             incrementButtonClass="p-button-success"
+            [ngModelOptions]="{ standalone: true }"
           >
           </p-inputNumber>
         </div>
@@ -48,9 +50,11 @@
         <p-dropdown
           [options]="horas"
           [(ngModel)]="hora"
-          placeholder="Selecione a hora"
           optionLabel="name"
+          placeholder="Selecione uma Hora"
           appendTo="body"
+          optionValue="code"
+          [ngModelOptions]="{ standalone: true }"
         ></p-dropdown>
         <div class="form-group btnReserva">
           <button

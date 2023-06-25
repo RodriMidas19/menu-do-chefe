@@ -13,6 +13,7 @@
     height: 100%;
     background-repeat: no-repeat;
     background-size: cover;
+    justify-content: space-between;
 
     .imgPizza {
       display: flex;
@@ -67,7 +68,8 @@
       background-color: #000;
       align-items: center;
       justify-content: center;
-      margin: auto;
+      margin: 0;
+      color: #fff;
     }
   }
 }

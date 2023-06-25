@@ -21,7 +21,7 @@ export class NavbarComponent implements OnInit {
     paths: 'exact',
     fragment: 'exact',
   };
-  constructor(private service: UserServiceService) {}
+  constructor(private service: UserServiceService, private router: Router) {}
   loginBtn: boolean = false;
   btnAdmin: boolean = false;
   token: string = '';
@@ -35,6 +35,7 @@ export class NavbarComponent implements OnInit {
       this.loginBtn = true;
       if (this.service.getToken() === 'ADM') {
         this.btnAdmin = true;
+        this.router.navigateByUrl('/admin');
       }
       return true;
     } else {

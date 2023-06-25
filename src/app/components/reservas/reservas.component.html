@@ -29,6 +29,8 @@
             [min]="0"
             [max]="50"
             placeholder="Selecione o nº Pessoas"
+            decrementButtonClass="p-button-danger"
+            incrementButtonClass="p-button-success"
           >
           </p-inputNumber>
         </div>
@@ -42,13 +44,14 @@
             [ngModelOptions]="{ standalone: true }"
           />
         </div>
+
         <p-dropdown
-            [options]="horas"
-            [(ngModel)]="hora"
-            optionLabel="name"
-            placeholder="Selecione a hora"
-            appendTo="body"
-          ></p-dropdown>
+          [options]="horas"
+          [(ngModel)]="hora"
+          placeholder="Selecione a hora"
+          optionLabel="name"
+          appendTo="body"
+        ></p-dropdown>
         <div class="form-group btnReserva">
           <button
             type="submit"

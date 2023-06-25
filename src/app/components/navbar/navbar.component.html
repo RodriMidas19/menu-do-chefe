@@ -42,7 +42,7 @@
     <a [routerLink]="'/perfil'" routerLinkActive="activeRouter"
       ><h6 *ngIf="loginBtn" class="link">Perfil</h6></a
     >
-    <a *ngIf="loginBtn" (Click)="userLogout()">
+    <a *ngIf="loginBtn" (click)="userLogout()">
       <h6 class="link-logout">Logout</h6>
     </a>
   </nav>

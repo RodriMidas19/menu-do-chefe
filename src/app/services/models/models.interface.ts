@@ -142,3 +142,7 @@ export interface RestauranteD{
   name:string;
   code:number;
 }
+export interface ReservasD{
+  name:string;
+  code:string;
+}

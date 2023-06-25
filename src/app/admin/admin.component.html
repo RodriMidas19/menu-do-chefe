@@ -1,6 +1,6 @@
 <section class="main-sec-admin">
   <aside class="sideBar" style="background-image: url(../../assets/wood.png)">
-    <h4 class="text-side">Bem-vindo {{ data.nome_funcionario }}</h4>
+    <h4 class="text-side">Bem-vindo {{ adminName }}</h4>
     <div class="items-side">
       <div class="item-side">
         <i class="pi pi-user" style="font-size: 1.5rem"></i>
@@ -26,7 +26,12 @@
       </div>
       <div class="item-side">
         <i class="pi pi-box" style="font-size: 1.5rem"></i>
-        <a class="lala" [routerLink]="['/admin', 'encomendas']"><h6>Encomendas</h6></a>
+        <a class="lala" [routerLink]="['/admin', 'encomendas']"
+          ><h6>Encomendas</h6></a
+        >
+      </div>
+      <div class="item-side">
+        <button class="btn btn-danger sair" (click)="userLogout()">Sair</button>
       </div>
     </div>
   </aside>

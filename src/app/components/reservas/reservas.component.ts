@@ -1,6 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { MessageService } from 'primeng/api';
-import { Restaurant } from 'src/app/services/models/models.interface';
+import {
+  ReservasD,
+  Restaurant,
+  RestauranteD,
+} from 'src/app/services/models/models.interface';
 import { RestauranteServiceService } from 'src/app/services/restaurantes/restaurante-service.service';
 import { UserServiceService } from 'src/app/services/userServices/user-service.service';
 
@@ -18,7 +22,7 @@ export class ReservasComponent implements OnInit {
   errorMessage: string | undefined;
   hora: any;
   dataReserva: any;
-  horas = [
+  horas: ReservasD[] = [
     { name: '12:00', code: '12:00' },
     { name: '13:00', code: '13:00' },
     { name: '14:00', code: '14:00' },
@@ -72,15 +76,11 @@ export class ReservasComponent implements OnInit {
       num_pessoas: this.nPessoas,
       data_reserva: this.dataReserva,
       situacao: 0,
-      hora_reserva: this.hora,
+      hora_reserva: this.hora.code,
       id_cliente: id,
     };
-    if (new Date() > this.dataReserva) {
-      this.messageService.add({
-        severity: 'error',
-        summary: 'Data',
-        detail: 'Data não é válida',
-      });
+    if (new Date() > new Date(this.dataReserva + ' ' + this.hora.code)) {
+      console.log('nao da ');
     } else {
       (await this.restauranteService.createReserva(data)).subscribe((resp) => {
         console.log(resp.message);

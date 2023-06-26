@@ -285,6 +285,8 @@
     [value]="dataMenus"
     [tableStyle]="{ 'min-width': '60rem' }"
     *ngIf="menu"
+    [paginator]="true"
+    [rows]="3"
   >
     <ng-template pTemplate="caption">
       <div div class="flex align-items-center justify-content-center">
@@ -354,6 +356,15 @@
         placeholder="Valor"
       >
       </p-inputNumber>
+      <p-dropdown
+        [options]="categorias"
+        [(ngModel)]="selectedCategoria"
+        optionLabel="nome"
+        placeholder="Selecione uma Categoria"
+        appendTo="body"
+        class="drop"
+        [ngModelOptions]="{ standalone: true }"
+      ></p-dropdown>
       <p-button icon="pi pi-check" (onClick)="confirmProduct()"></p-button>
       <ng-template pTemplate="footer">
         <p-button

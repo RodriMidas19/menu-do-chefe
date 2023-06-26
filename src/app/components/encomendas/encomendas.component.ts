@@ -29,12 +29,22 @@ export class EncomendasComponent implements OnInit {
     this.getRestaurantes();
     this.getCategorias();
   }
-
+  modalDoacao: boolean = false;
   moradaA: any;
   modalOpen: boolean = false;
   modal() {
     console.log(this.selectedRestaurante);
     this.modalOpen = true;
+  }
+  modalD(){
+    this.modalDoacao = true;
+  }
+  doar(){
+    this.messageService.add({
+      severity: 'success',
+      summary: 'Reserva',
+      detail: 'Acabou de doar 2€ para a WWF',
+    });
   }
   categorias: Categorias[] = [];
   selectedCategoria?: Categorias | undefined;

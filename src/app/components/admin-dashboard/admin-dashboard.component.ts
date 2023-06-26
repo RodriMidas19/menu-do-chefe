@@ -3,6 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { MessageService } from 'primeng/api';
 import { Observable, Subscriber } from 'rxjs';
 import {
+  Categorias,
   Funcionarios,
   Produto,
   Reservas,
@@ -106,6 +107,7 @@ export class AdminDashboardComponent implements OnInit {
         this.getAllEncomendas();
       }
     });
+    this.getCategorias();
   }
 
   async getAllEncomendas() {
@@ -342,6 +344,7 @@ export class AdminDashboardComponent implements OnInit {
       preco: this.preco,
       disponivel: this.disponivel,
       img: file,
+      categoria: this.selectedCategoria,
     };
     (await this.rService.addProduct(data)).subscribe((resp) => {
       this.messageService.add({
@@ -395,6 +398,13 @@ export class AdminDashboardComponent implements OnInit {
     });
   }
 
+  categorias: Categorias[] = [];
+  selectedCategoria?: Categorias | undefined;
+  async getCategorias() {
+    (await this.rService.getCategorias()).subscribe((resp) => {
+      this.categorias = resp.recordset;
+    });
+  }
   openModal() {
     this.menuModal = true;
   }

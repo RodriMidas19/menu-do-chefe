@@ -73,6 +73,9 @@
       <button type="button" class="btn btn-secondary" (click)="modal()">
         Finalizar Compra
       </button>
+      <button type="button" class="btn btn-success" (click)="modalD()">
+        Doar
+      </button>
     </div>
   </div>
 </section>
@@ -105,6 +108,30 @@
     ></button>
     <ng-template pTemplate="footer"> </ng-template>
   </p>
+</p-dialog>
+<p-dialog
+  header="Header"
+  [(visible)]="modalDoacao"
+  [breakpoints]="{ '960px': '75vw' }"
+  [style]="{ width: '50vw' }"
+  [draggable]="false"
+  [resizable]="false"
+>
+  <ng-template pTemplate="header">
+    <span class="text-xl font-bold">Confirmar Doação</span>
+  </ng-template>
+  <p class="imgDoar">
+    <img src="../../../assets/panda.jpg" alt="" srcset="" />
+    Ao confirmar esta doação irá estar a doar 2€ à WWF
+  </p>
+  <ng-template pTemplate="footer">
+    <p-button
+      icon="pi pi-check"
+      (click)="doar()"
+      label="Doar"
+      styleClass="p-button-text"
+    ></p-button>
+  </ng-template>
 </p-dialog>
 
 <p-toast></p-toast>
